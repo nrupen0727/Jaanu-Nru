@@ -14,10 +14,10 @@ const WEDDING_CONFIG = {
     groomParents: 'son of Mr. & Mrs. Groom-Parent',
   },
   events: [
-    { name: 'Mehendi', time: '4:00 PM', date: '10th December 2026', venue: 'Family Residence' },
-    { name: 'Sangeet', time: '7:00 PM', date: '11th December 2026', venue: 'The Grand Palace, Lawn' },
-    { name: 'Wedding Ceremony', time: '11:00 AM', date: '12th December 2026', venue: 'The Grand Palace, Main Hall' },
-    { name: 'Reception', time: '7:00 PM', date: '12th December 2026', venue: 'The Grand Palace, Ballroom' },
+    { name: 'Mehendi', time: '4:00 PM', date: '10th December 2026', venue: 'Family Residence', motif: 'garden' },
+    { name: 'Sangeet', time: '7:00 PM', date: '11th December 2026', venue: 'The Grand Palace, Lawn', motif: 'peacock' },
+    { name: 'Wedding Ceremony', time: '11:00 AM', date: '12th December 2026', venue: 'The Grand Palace, Main Hall', motif: 'elephant' },
+    { name: 'Reception', time: '7:00 PM', date: '12th December 2026', venue: 'The Grand Palace, Ballroom', motif: 'architecture' },
   ],
   story: "Add your story here — how you met, your favorite memory together, and the moment you knew. This placeholder text can be swapped for your real story whenever you're ready.",
   gallery: {
@@ -26,10 +26,10 @@ const WEDDING_CONFIG = {
     placeholderCount: 6,
   },
   thingsToKnow: [
-    { title: 'Dress Code', body: 'Traditional or festive attire — think color and comfort.' },
-    { title: 'Accommodation', body: 'A room block is held at the venue hotel; details to follow.' },
-    { title: 'Parking', body: 'Complimentary valet parking is available on-site.' },
-    { title: 'Kids', body: "We'd love to see the little ones celebrate with us." },
+    { title: 'Dress Code', body: 'Traditional or festive attire — think color and comfort.', motif: 'couple' },
+    { title: 'Accommodation', body: 'A room block is held at the venue hotel; details to follow.', motif: 'dome' },
+    { title: 'Parking', body: 'Complimentary valet parking is available on-site.', motif: 'horses' },
+    { title: 'Kids', body: "We'd love to see the little ones celebrate with us.", motif: 'children' },
   ],
   rsvp: {
     whatsapp: '', // e.g. "911234567890" (country code + number, no + or spaces)
@@ -65,6 +65,7 @@ function renderEvents() {
   if (!list) return;
   list.innerHTML = WEDDING_CONFIG.events.map((evt) => `
     <div class="event-card reveal-item" role="listitem">
+      <span class="event-icon motif motif--${evt.motif}" aria-hidden="true"></span>
       <p class="event-name">${evt.name}</p>
       <svg viewBox="0 0 60 8" class="event-rule" aria-hidden="true"><path d="M0 4h24M36 4h24"/><circle cx="30" cy="4" r="2.5"/></svg>
       <p class="event-time">${evt.time}</p>
@@ -79,6 +80,7 @@ function renderThingsToKnow() {
   if (!grid) return;
   grid.innerHTML = WEDDING_CONFIG.thingsToKnow.map((card) => `
     <li class="ttk-card reveal-item">
+      <span class="ttk-icon motif motif--${card.motif}" aria-hidden="true"></span>
       <p class="ttk-card-title">${card.title}</p>
       <p class="ttk-card-body">${card.body}</p>
     </li>
@@ -219,6 +221,106 @@ function initCountdown() {
 }
 
 // ═══════════════════════════════════
+// RSVP fireworks — lightweight canvas particle bursts, only while in view
+// ═══════════════════════════════════
+function initFireworks() {
+  const canvas = document.getElementById('rsvpFireworks');
+  const section = document.getElementById('rsvp');
+  if (!canvas || !section) return;
+  const ctx = canvas.getContext('2d');
+  const colors = ['#d9b876', '#fffaf5', '#f2d9a0'];
+  let width = 0;
+  let height = 0;
+  let particles = [];
+  let running = false;
+  let rafId = null;
+  let spawnTimer = null;
+
+  function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    width = section.clientWidth;
+    height = section.clientHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function spawnBurst() {
+    const cx = width * (0.15 + Math.random() * 0.7);
+    const cy = height * (0.08 + Math.random() * 0.16);
+    const count = 28 + Math.floor(Math.random() * 12);
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    for (let i = 0; i < count; i += 1) {
+      const angle = (Math.PI * 2 * i) / count + Math.random() * 0.2;
+      const speed = 1.1 + Math.random() * 2.2;
+      particles.push({
+        x: cx, y: cy,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        life: 1,
+        decay: 0.007 + Math.random() * 0.006,
+        color,
+      });
+    }
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, width, height);
+    particles.forEach((p) => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.012;
+      p.life -= p.decay;
+      if (p.life > 0) {
+        ctx.globalAlpha = p.life;
+        ctx.fillStyle = p.color;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 6;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2.2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    });
+    particles = particles.filter((p) => p.life > 0);
+    ctx.globalAlpha = 1;
+    ctx.shadowBlur = 0;
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function start() {
+    if (running) return;
+    running = true;
+    resize();
+    spawnBurst();
+    tick();
+    spawnTimer = setInterval(spawnBurst, 1800);
+  }
+
+  function stop() {
+    running = false;
+    if (rafId) cancelAnimationFrame(rafId);
+    if (spawnTimer) clearInterval(spawnTimer);
+    rafId = null;
+    spawnTimer = null;
+    particles = [];
+    ctx.clearRect(0, 0, width, height);
+  }
+
+  window.addEventListener('resize', () => { if (running) resize(); });
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => (entry.isIntersecting ? start() : stop()));
+    }, { threshold: 0.25 });
+    observer.observe(section);
+  } else {
+    start();
+  }
+}
+
+// ═══════════════════════════════════
 // Intro, scroll reveal, floating nav
 // ═══════════════════════════════════
 function initIntro() {
@@ -287,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // initIntro runs first so the tap-to-enter always works even if a
   // later init throws (e.g. from bad placeholder content).
   const steps = [initIntro, populateCouple, renderEvents, renderThingsToKnow,
-    renderGallery, initGalleryControls, initRsvp, initCountdown, initScrollReveal, initNav];
+    renderGallery, initGalleryControls, initRsvp, initCountdown, initScrollReveal, initNav, initFireworks];
   steps.forEach((step) => {
     try { step(); } catch (err) { console.error(`${step.name} failed:`, err); }
   });
