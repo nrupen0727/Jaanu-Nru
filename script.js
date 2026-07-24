@@ -13,14 +13,12 @@ const WEDDING_CONFIG = {
     brideParents: 'daughter of Mr. Deepak and Neela Chaudhary',
     groomParents: 'son of Mr. Dinesh and Mrs. Jigisha Patel',
   },
+  // First 2 entries render as row 1, remaining 3 as row 2 (see renderEvents)
   events: [
-    { name: 'Kankotri', time: '10:00 AM', date: '1st February 2027', venue: "Nrupen's Home", icon: 'kankotri', mapQuery: "Nrupen's Home, Ahmedabad, Gujarat, India", dress: 'Traditional Indian attire' },
-    { name: 'Mehendi', time: '5:00 PM onwards', date: '3rd February 2027', venue: 'Ahmedabad', icon: 'mehendi', mapQuery: 'Ahmedabad, Gujarat, India', dress: 'Yellow & green — festive colors' },
     { name: "Nrupen's Grahshanti / Mameru", time: '1:30 PM onwards', date: '4th February 2027', venue: "Nrupen's Home", icon: 'grahshanti', mapQuery: "Nrupen's Home, Ahmedabad, Gujarat, India", dress: 'Traditional Indian attire' },
-    { name: 'Pre-Wedding Dinner', time: '7:00 PM onwards', date: '4th February 2027', venue: "Nrupen's Home", icon: 'dinner', mapQuery: "Nrupen's Home, Ahmedabad, Gujarat, India", dress: 'Smart casual' },
     { name: "Jaanu's Grahshanti", time: '7:00 AM onwards', date: '4th February 2027', venue: "Jaanu's Home", icon: 'grahshanti', mapQuery: "Jaanu's Home, Ahmedabad, Gujarat, India", dress: 'Traditional Indian attire' },
+    { name: 'Mehendi', time: '5:00 PM onwards', date: '3rd February 2027', venue: 'Ahmedabad', icon: 'mehendi', mapQuery: 'Ahmedabad, Gujarat, India', dress: 'Yellow & green — festive colors' },
     { name: 'Garba', time: '7:00 PM onwards', date: '5th February 2027', venue: 'Madhuban Party Plot, Koba', note: 'ft. Bhumik Shah', icon: 'garba', mapQuery: 'Madhuban Party Plot, Koba, Gujarat, India', dress: 'Chaniya choli / kurta — traditional Garba wear' },
-    { name: 'Haldi', time: '6:00 PM onwards', date: '6th February 2027', venue: "Nrupen's Home", icon: 'haldi', mapQuery: "Nrupen's Home, Ahmedabad, Gujarat, India", dress: 'Yellow attire' },
     { name: 'Wedding — Baarat & Rituals', time: 'Baarat 2:00 PM · Rituals 5:30 PM', date: '7th February 2027', venue: 'Infocity Club and Resort', icon: 'ceremony', mapQuery: 'Infocity Club and Resort, Gujarat, India', dress: 'Traditional formal Indian attire' },
   ],
   story: "Add your story here — how you met, your favorite memory together, and the moment you knew. This placeholder text can be swapped for your real story whenever you're ready.",
@@ -39,17 +37,10 @@ const WEDDING_CONFIG = {
 // Hand-drawn line icons (no external images) — 24x24, stroke = currentColor
 // ═══════════════════════════════════
 const ICONS = {
-  kankotri: '<rect x="3" y="5.5" width="18" height="13" rx="1.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/>',
   mehendi: '<path d="M12 4c4.2 0 7.5 3.2 7.5 7.3 0 5.3-4.2 8.4-7 11.7-1.1-3-.2-5.4.3-7.6.4-1.8-.9-3.4-2.8-3.4-1.7 0-3 1.3-3 3 0 .9.4 1.7 1 2.2C6 16.3 4.5 14 4.5 11.3 4.5 7.2 7.8 4 12 4z"/>',
   grahshanti: '<path d="M12 4c1.3 1.8 2.2 3.3 2.2 4.6a2.2 2.2 0 01-4.4 0C9.8 7.3 10.7 5.8 12 4z"/><ellipse cx="12" cy="17" rx="7" ry="2.4"/><path d="M5 17c0-2.8 3.1-5 7-5s7 2.2 7 5"/>',
-  dinner: '<path d="M7 3v6a2 2 0 004 0V3"/><path d="M9 3v18"/><path d="M17 3c-1.7 0-3 2-3 5s1.3 5 3 5"/><path d="M17 3v18"/>',
   garba: '<path d="M5 5l14 14"/><path d="M19 5L5 19"/><circle cx="5" cy="5" r="1.3"/><circle cx="19" cy="5" r="1.3"/><circle cx="5" cy="19" r="1.3"/><circle cx="19" cy="19" r="1.3"/>',
-  haldi: '<circle cx="12" cy="12" r="2.2"/><path d="M12 3.5c1.6 0 2.8 1.6 2.8 3.5S13.6 10.5 12 10.5 9.2 8.9 9.2 7 10.4 3.5 12 3.5z"/><path d="M20.5 12c0 1.6-1.6 2.8-3.5 2.8S13.5 13.6 13.5 12s1.6-2.8 3.5-2.8 3.5 1.2 3.5 2.8z"/><path d="M12 20.5c-1.6 0-2.8-1.6-2.8-3.5s1.2-3.5 2.8-3.5 2.8 1.6 2.8 3.5-1.2 3.5-2.8 3.5z"/><path d="M3.5 12c0-1.6 1.6-2.8 3.5-2.8s3.5 1.2 3.5 2.8-1.6 2.8-3.5 2.8-3.5-1.2-3.5-2.8z"/>',
   ceremony: '<circle cx="9" cy="14.5" r="5.8"/><circle cx="15" cy="14.5" r="5.8"/>',
-  dressCode: '<path d="M12 3.2a1.8 1.8 0 011.8 1.8c0 .8-.5 1.4-1.2 1.7L12 7v1.3"/><path d="M12 8.3l9.5 6.2H2.5L12 8.3z"/><path d="M4 18.8h16"/>',
-  accommodation: '<path d="M3 18.5v-5.8a2 2 0 012-2h14a2 2 0 012 2v5.8"/><path d="M3 18.5v2.3"/><path d="M21 18.5v2.3"/><path d="M3 12.7V9.5a2 2 0 012-2h4a2 2 0 012 2v3.2"/>',
-  parking: '<path d="M5.2 16.2l1.3-4.6a2 2 0 011.9-1.4h7.2a2 2 0 011.9 1.4l1.3 4.6"/><path d="M4 16.2h16v3a1 1 0 01-1 1h-.8a1 1 0 01-1-1v-1H6.8v1a1 1 0 01-1 1H5a1 1 0 01-1-1v-3z"/><circle cx="7.3" cy="16.2" r="1.2"/><circle cx="16.7" cy="16.2" r="1.2"/>',
-  kids: '<ellipse cx="12" cy="9.5" rx="5" ry="6"/><path d="M12 15.5l-1.1 1.8 1.1 1 1.1-1-1.1-1.8z"/><path d="M12 18.3c1 .9 2.2 1.9 1 3.9"/>',
   camera: '<path d="M4 8.5A1.5 1.5 0 015.5 7h2l1-2h7l1 2h2A1.5 1.5 0 0120 8.5v9A1.5 1.5 0 0118.5 19h-13A1.5 1.5 0 014 17.5v-9z"/><circle cx="12" cy="13" r="3.6"/>',
   pin: '<path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/>',
 };
@@ -88,10 +79,8 @@ function populateCouple() {
   if (storyBody) storyBody.textContent = WEDDING_CONFIG.story;
 }
 
-function renderEvents() {
-  const list = document.getElementById('eventsList');
-  if (!list) return;
-  list.innerHTML = WEDDING_CONFIG.events.map((evt, i) => `
+function eventCardHtml(evt, i) {
+  return `
     <div class="event-card reveal-item" role="listitem" ${staggerDelay(i)}>
       ${iconMarkup(evt.icon, i % 2 ? 'icon-badge--emerald' : '')}
       <p class="event-name">${evt.name}</p>
@@ -108,7 +97,19 @@ function renderEvents() {
         </a>
       ` : ''}
     </div>
-  `).join('');
+  `;
+}
+
+function renderEvents() {
+  const list = document.getElementById('eventsList');
+  if (!list) return;
+  const events = WEDDING_CONFIG.events;
+  const row1 = events.slice(0, 2).map((evt, i) => eventCardHtml(evt, i)).join('');
+  const row2 = events.slice(2).map((evt, i) => eventCardHtml(evt, i + 2)).join('');
+  list.innerHTML = `
+    <div class="events-row">${row1}</div>
+    <div class="events-row">${row2}</div>
+  `;
 }
 
 // ═══════════════════════════════════
