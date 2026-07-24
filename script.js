@@ -17,7 +17,6 @@ const WEDDING_CONFIG = {
   ritualCards: [
     {
       name: "Nrupen's Rituals",
-      icon: 'grahshanti',
       venue: "Nrupen's Home",
       mapQuery: "Nrupen's Home, Ahmedabad, Gujarat, India",
       events: [
@@ -28,7 +27,6 @@ const WEDDING_CONFIG = {
     },
     {
       name: "Jaanu's Rituals",
-      icon: 'grahshanti',
       venue: "Jaanu's Home",
       mapQuery: "Jaanu's Home, Ahmedabad, Gujarat, India",
       events: [
@@ -60,7 +58,6 @@ const WEDDING_CONFIG = {
 // ═══════════════════════════════════
 const ICONS = {
   mehendi: '<path d="M12 4c4.2 0 7.5 3.2 7.5 7.3 0 5.3-4.2 8.4-7 11.7-1.1-3-.2-5.4.3-7.6.4-1.8-.9-3.4-2.8-3.4-1.7 0-3 1.3-3 3 0 .9.4 1.7 1 2.2C6 16.3 4.5 14 4.5 11.3 4.5 7.2 7.8 4 12 4z"/>',
-  grahshanti: '<path d="M12 4c1.3 1.8 2.2 3.3 2.2 4.6a2.2 2.2 0 01-4.4 0C9.8 7.3 10.7 5.8 12 4z"/><ellipse cx="12" cy="17" rx="7" ry="2.4"/><path d="M5 17c0-2.8 3.1-5 7-5s7 2.2 7 5"/>',
   garba: '<path d="M5 5l14 14"/><path d="M19 5L5 19"/><circle cx="5" cy="5" r="1.3"/><circle cx="19" cy="5" r="1.3"/><circle cx="5" cy="19" r="1.3"/><circle cx="19" cy="19" r="1.3"/>',
   ceremony: '<circle cx="9" cy="14.5" r="5.8"/><circle cx="15" cy="14.5" r="5.8"/>',
   camera: '<path d="M4 8.5A1.5 1.5 0 015.5 7h2l1-2h7l1 2h2A1.5 1.5 0 0120 8.5v9A1.5 1.5 0 0118.5 19h-13A1.5 1.5 0 014 17.5v-9z"/><circle cx="12" cy="13" r="3.6"/>',
@@ -71,6 +68,47 @@ function iconMarkup(name, extraClass) {
   const path = ICONS[name] || ICONS.camera;
   return `<span class="icon-badge${extraClass ? ' ' + extraClass : ''}" aria-hidden="true">
     <svg class="icon-badge-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${path}</svg>
+  </span>`;
+}
+
+// Larger hand-drawn medallion (elephant + floral frame) used on the two
+// grouped ritual cards, in place of the small icon badge.
+const RITUAL_EMBLEM_PATHS = `
+  <circle cx="50" cy="55" r="43" stroke-width="2.4" stroke-dasharray="0.5 4.2"/>
+  <circle cx="50" cy="55" r="36" stroke-width="1"/>
+  <path d="M50 8 C 47 12 47 17 50 20 C 53 17 53 12 50 8 Z" fill="currentColor" stroke="none"/>
+  <circle cx="47" cy="61" r="11"/>
+  <ellipse cx="62" cy="67" rx="16" ry="11"/>
+  <path d="M37 65 C 31 61 32 53 26 48 C 23 46 23 42 26 41" />
+  <path d="M48 74 L 48 88 M 54 76 L 54 90 M 64 76 L 64 90 M 70 73 L 70 87" stroke-width="2.2"/>
+  <circle cx="48" cy="85" r="1.6" fill="currentColor" stroke="none"/>
+  <circle cx="54" cy="87" r="1.6" fill="currentColor" stroke="none"/>
+  <circle cx="64" cy="87" r="1.6" fill="currentColor" stroke="none"/>
+  <circle cx="70" cy="84" r="1.6" fill="currentColor" stroke="none"/>
+  <path d="M73 58 C 78 60 78 65 74 67" stroke-width="1" />
+  <path d="M9 92 C 12 78 16 65 22 50" stroke-width="1"/>
+  <path d="M11 86 C 6 84 4 80 4 76" stroke-width="0.9"/>
+  <path d="M14 76 C 9 74 7 70 7 66" stroke-width="0.9"/>
+  <path d="M17 66 C 12 64 10 60 10 56" stroke-width="0.9"/>
+  <path d="M20 57 C 15 55 13 51 13 47" stroke-width="0.9"/>
+  <path d="M91 92 C 88 78 84 65 78 50" stroke-width="1"/>
+  <path d="M89 86 C 94 84 96 80 96 76" stroke-width="0.9"/>
+  <path d="M86 76 C 91 74 93 70 93 66" stroke-width="0.9"/>
+  <path d="M83 66 C 88 64 90 60 90 56" stroke-width="0.9"/>
+  <path d="M80 57 C 85 55 87 51 87 47" stroke-width="0.9"/>
+  <circle cx="50" cy="110" r="2.4" fill="currentColor" stroke="none"/>
+  <circle cx="50" cy="104" r="2.6" fill="currentColor" stroke="none" opacity="0.85"/>
+  <circle cx="55.7" cy="108.1" r="2.6" fill="currentColor" stroke="none" opacity="0.85"/>
+  <circle cx="53.5" cy="114.9" r="2.6" fill="currentColor" stroke="none" opacity="0.85"/>
+  <circle cx="46.5" cy="114.9" r="2.6" fill="currentColor" stroke="none" opacity="0.85"/>
+  <circle cx="44.3" cy="108.1" r="2.6" fill="currentColor" stroke="none" opacity="0.85"/>
+  <path d="M35 108 C 30 106 28 110 30 113" stroke-width="0.9"/>
+  <path d="M65 108 C 70 106 72 110 70 113" stroke-width="0.9"/>
+`;
+
+function ritualEmblemMarkup(extraClass) {
+  return `<span class="ritual-emblem${extraClass ? ' ' + extraClass : ''}" aria-hidden="true">
+    <svg class="ritual-emblem-svg" viewBox="0 0 100 130" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">${RITUAL_EMBLEM_PATHS}</svg>
   </span>`;
 }
 
@@ -124,7 +162,7 @@ function eventCardHtml(evt, i) {
 function ritualCardHtml(card, i) {
   return `
     <div class="event-card ritual-card reveal-item" role="listitem" ${staggerDelay(i)}>
-      ${iconMarkup(card.icon, i % 2 ? 'icon-badge--emerald' : '')}
+      ${ritualEmblemMarkup(i % 2 ? 'ritual-emblem--emerald' : '')}
       <p class="event-name">${card.name}</p>
       <svg viewBox="0 0 60 8" class="event-rule" aria-hidden="true"><path d="M0 4h24M36 4h24"/><circle cx="30" cy="4" r="2.5"/></svg>
       <div class="ritual-sub-list">
