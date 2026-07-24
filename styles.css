@@ -422,6 +422,51 @@ body:not(.intro-active) .intro {
   max-width: 320px;
 }
 
+.events-row .ritual-card {
+  flex-basis: 280px;
+  max-width: 360px;
+}
+
+.ritual-sub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin: 0.5rem 0 1.1rem;
+}
+
+.ritual-sub-item {
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--gold-light);
+}
+
+.ritual-sub-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ritual-sub-name {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  color: var(--maroon);
+  letter-spacing: 0.03em;
+  margin: 0 0 0.3rem;
+}
+
+.ritual-sub-meta {
+  font-size: 0.85rem;
+  color: var(--ink);
+  opacity: 0.75;
+  margin: 0.1rem 0;
+}
+
+.ritual-sub-dress {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--ink);
+  opacity: 0.6;
+  margin: 0.25rem 0 0;
+}
+
 .event-card {
   border: 1px solid var(--gold-light);
   background: var(--ivory);
