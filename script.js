@@ -328,10 +328,15 @@ function initIntro() {
   const page = document.getElementById('page');
   if (!intro || !page) return;
 
-  function enter() {
-    if (intro.dataset.entered) return;
-    intro.dataset.entered = 'true';
+  const introVideo = intro.querySelector('.intro-video');
+  const PLAY_MS = 4500; // the source clip is 20s long; we only need a brief moment of it
+  let revealed = false;
 
+  function reveal() {
+    if (revealed) return;
+    revealed = true;
+
+    intro.classList.remove('is-playing');
     intro.classList.add('is-flashing');
     requestAnimationFrame(() => {
       intro.classList.remove('is-flashing');
@@ -340,6 +345,27 @@ function initIntro() {
       page.removeAttribute('aria-hidden');
     });
     intro.addEventListener('transitionend', () => intro.remove(), { once: true });
+  }
+
+  function enter() {
+    if (intro.dataset.entered) return;
+    intro.dataset.entered = 'true';
+
+    if (!introVideo) {
+      reveal();
+      return;
+    }
+
+    intro.classList.add('is-playing');
+    introVideo.currentTime = 0;
+    introVideo.addEventListener('ended', reveal, { once: true });
+    setTimeout(reveal, PLAY_MS);
+
+    introVideo.muted = false;
+    introVideo.play().catch(() => {
+      introVideo.muted = true;
+      introVideo.play().catch(() => {});
+    });
   }
 
   intro.addEventListener('click', enter);

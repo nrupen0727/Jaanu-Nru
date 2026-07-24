@@ -75,9 +75,15 @@ body:not(.intro-active) .intro {
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at 50% 38%, rgba(61, 15, 26, 0.55) 0%, rgba(61, 15, 26, 0.88) 100%);
+  transition: opacity 0.5s ease;
 }
 
-.intro-bg img {
+.intro.is-playing .intro-bg::after {
+  opacity: 0.35;
+}
+
+.intro-bg img,
+.intro-bg video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -91,6 +97,11 @@ body:not(.intro-active) .intro {
   text-align: center;
   color: var(--ivory);
   padding: 2rem;
+  transition: opacity 0.4s ease;
+}
+
+.intro.is-playing .intro-content {
+  opacity: 0;
 }
 
 .intro-medallion {
