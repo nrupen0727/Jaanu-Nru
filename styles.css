@@ -427,21 +427,21 @@ body:not(.intro-active) .intro {
   max-width: 360px;
 }
 
-.ritual-emblem {
+.card-portrait {
   display: block;
-  width: 110px;
-  margin: 0 auto 0.5rem;
-  color: var(--maroon);
+  width: 116px;
+  aspect-ratio: 3 / 4;
+  margin: 0 auto 1rem;
+  border: 1px solid var(--gold);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(61, 15, 26, 0.15);
 }
 
-.ritual-emblem--emerald {
-  color: var(--emerald);
-}
-
-.ritual-emblem-svg {
+.card-portrait img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
 }
 
 .ritual-sub-list {
@@ -518,9 +518,6 @@ body:not(.intro-active) .intro {
   height: 28px;
   color: var(--maroon);
 }
-
-.icon-badge--emerald { border-color: var(--emerald); }
-.icon-badge--emerald .icon-badge-svg { color: var(--emerald); }
 
 .gallery-frame .icon-badge {
   width: 56px;
