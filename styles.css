@@ -87,6 +87,26 @@ body:not(.intro-active) .intro {
   -webkit-appearance: none;
 }
 
+/*
+ * Some browsers (iOS Low Power Mode, strict in-app browsers) block muted
+ * autoplay outright and show a native "tap to play" glyph over the paused
+ * frame. Rather than fight that per-browser, keep the video fully covered
+ * until either autoplay genuinely starts (video-live) or the user taps the
+ * bell (is-playing) — a real gesture, which always unblocks playback.
+ */
+.intro-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--cream);
+  transition: opacity 0.5s ease;
+}
+
+.intro.video-live .intro-bg::before,
+.intro.is-playing .intro-bg::before {
+  opacity: 0;
+}
+
 .intro-content {
   pointer-events: none;
   position: relative;
