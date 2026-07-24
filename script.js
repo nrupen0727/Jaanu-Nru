@@ -13,10 +13,31 @@ const WEDDING_CONFIG = {
     brideParents: 'daughter of Mr. Deepak and Neela Chaudhary',
     groomParents: 'son of Mr. Dinesh and Mrs. Jigisha Patel',
   },
-  // First 2 entries render as row 1, remaining 3 as row 2 (see renderEvents)
+  // Row 1: grouped multi-event ritual cards (one per household)
+  ritualCards: [
+    {
+      name: "Nrupen's Rituals",
+      icon: 'grahshanti',
+      venue: "Nrupen's Home",
+      mapQuery: "Nrupen's Home, Ahmedabad, Gujarat, India",
+      events: [
+        { name: 'Kankotri', time: '10:00 AM', date: '1st February 2027', dress: 'Traditional Indian attire' },
+        { name: 'Grahshanti & Mameru', time: '1:30 PM onwards', date: '4th February 2027', dress: 'Traditional Indian attire' },
+        { name: 'Haldi', time: '6:00 PM onwards', date: '6th February 2027', dress: 'Yellow attire' },
+      ],
+    },
+    {
+      name: "Jaanu's Rituals",
+      icon: 'grahshanti',
+      venue: "Jaanu's Home",
+      mapQuery: "Jaanu's Home, Ahmedabad, Gujarat, India",
+      events: [
+        { name: 'Grahshanti & Mameru', time: '7:00 AM onwards', date: '4th February 2027', dress: 'Traditional Indian attire' },
+      ],
+    },
+  ],
+  // Row 2: single-event cards
   events: [
-    { name: "Nrupen's Grahshanti / Mameru", time: '1:30 PM onwards', date: '4th February 2027', venue: "Nrupen's Home", icon: 'grahshanti', mapQuery: "Nrupen's Home, Ahmedabad, Gujarat, India", dress: 'Traditional Indian attire' },
-    { name: "Jaanu's Grahshanti", time: '7:00 AM onwards', date: '4th February 2027', venue: "Jaanu's Home", icon: 'grahshanti', mapQuery: "Jaanu's Home, Ahmedabad, Gujarat, India", dress: 'Traditional Indian attire' },
     { name: 'Mehendi', time: '5:00 PM onwards', date: '3rd February 2027', venue: 'Ahmedabad', icon: 'mehendi', mapQuery: 'Ahmedabad, Gujarat, India', dress: 'Yellow & green — festive colors' },
     { name: 'Garba', time: '7:00 PM onwards', date: '5th February 2027', venue: 'Madhuban Party Plot, Koba', note: 'ft. Bhumik Shah', icon: 'garba', mapQuery: 'Madhuban Party Plot, Koba, Gujarat, India', dress: 'Chaniya choli / kurta — traditional Garba wear' },
     { name: 'Wedding — Baarat & Rituals', time: 'Baarat 2:00 PM · Rituals 5:30 PM', date: '7th February 2027', venue: 'Infocity Club and Resort', icon: 'ceremony', mapQuery: 'Infocity Club and Resort, Gujarat, India', dress: 'Traditional formal Indian attire' },
@@ -100,12 +121,40 @@ function eventCardHtml(evt, i) {
   `;
 }
 
+function ritualCardHtml(card, i) {
+  return `
+    <div class="event-card ritual-card reveal-item" role="listitem" ${staggerDelay(i)}>
+      ${iconMarkup(card.icon, i % 2 ? 'icon-badge--emerald' : '')}
+      <p class="event-name">${card.name}</p>
+      <svg viewBox="0 0 60 8" class="event-rule" aria-hidden="true"><path d="M0 4h24M36 4h24"/><circle cx="30" cy="4" r="2.5"/></svg>
+      <div class="ritual-sub-list">
+        ${card.events.map((sub) => `
+          <div class="ritual-sub-item">
+            <p class="ritual-sub-name">${sub.name}</p>
+            <p class="ritual-sub-meta">${sub.time}</p>
+            <p class="ritual-sub-meta">${sub.date}</p>
+            ${sub.dress ? `<p class="ritual-sub-dress">Dress code: ${sub.dress}</p>` : ''}
+          </div>
+        `).join('')}
+      </div>
+      <p class="event-venue">${card.venue}</p>
+      ${card.mapQuery ? `
+        <a class="event-map-link" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(card.mapQuery)}" target="_blank" rel="noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICONS.pin}</svg>
+          Get Directions
+        </a>
+      ` : ''}
+    </div>
+  `;
+}
+
 function renderEvents() {
   const list = document.getElementById('eventsList');
   if (!list) return;
+  const ritualCards = WEDDING_CONFIG.ritualCards;
   const events = WEDDING_CONFIG.events;
-  const row1 = events.slice(0, 2).map((evt, i) => eventCardHtml(evt, i)).join('');
-  const row2 = events.slice(2).map((evt, i) => eventCardHtml(evt, i + 2)).join('');
+  const row1 = ritualCards.map((card, i) => ritualCardHtml(card, i)).join('');
+  const row2 = events.map((evt, i) => eventCardHtml(evt, i + ritualCards.length)).join('');
   list.innerHTML = `
     <div class="events-row">${row1}</div>
     <div class="events-row">${row2}</div>
