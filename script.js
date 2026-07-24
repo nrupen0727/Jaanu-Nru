@@ -5,13 +5,13 @@ const WEDDING_CONFIG = {
   couple: {
     bride: 'Jainee',
     groom: 'Nrupen',
-    date: '2026-12-12', // YYYY-MM-DD, used for the countdown + calendar links
-    dateDisplay: '12th December 2026',
-    venue: 'The Grand Palace, Udaipur',
+    date: '2027-02-07', // YYYY-MM-DD, used for the countdown + calendar links
+    dateDisplay: '7th February 2027',
+    venue: 'Ahmedabad, Gujarat, India',
   },
   invite: {
-    brideParents: 'daughter of Mr. & Mrs. Bride-Parent',
-    groomParents: 'son of Mr. & Mrs. Groom-Parent',
+    brideParents: 'daughter of Mr. Deepakbhai and Neelaben Chaudhary',
+    groomParents: 'son of Mr. Dineshbhai and Mrs. Jigishaben Patel',
   },
   events: [
     { name: 'Mehendi', time: '4:00 PM', date: '10th December 2026', venue: 'Family Residence', icon: 'mehendi' },
