@@ -329,8 +329,12 @@ function initIntro() {
   if (!intro || !page) return;
 
   const introVideo = intro.querySelector('.intro-video');
-  const PLAY_MS = 4500; // the source clip is 20s long; we only need a brief moment of it
+  const PLAY_MS = 4500; // fallback in case the 'ended' event doesn't fire
   let revealed = false;
+
+  if (introVideo) {
+    introVideo.play().catch(() => {}); // muted background loop; browsers may still block until a gesture
+  }
 
   function reveal() {
     if (revealed) return;
@@ -357,6 +361,7 @@ function initIntro() {
     }
 
     intro.classList.add('is-playing');
+    introVideo.loop = false; // let it play through once so 'ended' can fire
     introVideo.currentTime = 0;
     introVideo.addEventListener('ended', reveal, { once: true });
     setTimeout(reveal, PLAY_MS);
