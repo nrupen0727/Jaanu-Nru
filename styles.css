@@ -405,9 +405,21 @@ body:not(.intro-active) .intro {
 }
 
 .events-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 1.5rem;
+}
+
+.events-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.events-row .event-card {
+  flex: 1 1 240px;
+  max-width: 320px;
 }
 
 .event-card {
