@@ -427,6 +427,23 @@ body:not(.intro-active) .intro {
   max-width: 360px;
 }
 
+.ritual-emblem {
+  display: block;
+  width: 110px;
+  margin: 0 auto 0.5rem;
+  color: var(--maroon);
+}
+
+.ritual-emblem--emerald {
+  color: var(--emerald);
+}
+
+.ritual-emblem-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 .ritual-sub-list {
   display: flex;
   flex-direction: column;
