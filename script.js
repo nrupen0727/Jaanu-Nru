@@ -118,7 +118,7 @@ function eventCardHtml(evt, i) {
 function ritualCardHtml(card, i) {
   return `
     <div class="event-card ritual-card reveal-item" role="listitem" ${staggerDelay(i)}>
-      <span class="card-portrait" aria-hidden="true"><img src="assets/ritual-elephant.jpg" alt="" loading="lazy" decoding="async" /></span>
+      <span class="card-portrait" aria-hidden="true"><img src="assets/ritual-elephant.png" alt="" loading="lazy" decoding="async" /></span>
       <p class="event-name">${card.name}</p>
       <svg viewBox="0 0 60 8" class="event-rule" aria-hidden="true"><path d="M0 4h24M36 4h24"/><circle cx="30" cy="4" r="2.5"/></svg>
       <div class="ritual-sub-list">
