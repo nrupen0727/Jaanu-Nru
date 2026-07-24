@@ -14,10 +14,10 @@ const WEDDING_CONFIG = {
     groomParents: 'son of Mr. & Mrs. Groom-Parent',
   },
   events: [
-    { name: 'Mehendi', time: '4:00 PM', date: '10th December 2026', venue: 'Family Residence', motif: 'garden' },
-    { name: 'Sangeet', time: '7:00 PM', date: '11th December 2026', venue: 'The Grand Palace, Lawn', motif: 'peacock' },
-    { name: 'Wedding Ceremony', time: '11:00 AM', date: '12th December 2026', venue: 'The Grand Palace, Main Hall', motif: 'elephant' },
-    { name: 'Reception', time: '7:00 PM', date: '12th December 2026', venue: 'The Grand Palace, Ballroom', motif: 'architecture' },
+    { name: 'Mehendi', time: '4:00 PM', date: '10th December 2026', venue: 'Family Residence', icon: 'mehendi' },
+    { name: 'Sangeet', time: '7:00 PM', date: '11th December 2026', venue: 'The Grand Palace, Lawn', icon: 'sangeet' },
+    { name: 'Wedding Ceremony', time: '11:00 AM', date: '12th December 2026', venue: 'The Grand Palace, Main Hall', icon: 'ceremony' },
+    { name: 'Reception', time: '7:00 PM', date: '12th December 2026', venue: 'The Grand Palace, Ballroom', icon: 'reception' },
   ],
   story: "Add your story here — how you met, your favorite memory together, and the moment you knew. This placeholder text can be swapped for your real story whenever you're ready.",
   gallery: {
@@ -26,16 +26,42 @@ const WEDDING_CONFIG = {
     placeholderCount: 6,
   },
   thingsToKnow: [
-    { title: 'Dress Code', body: 'Traditional or festive attire — think color and comfort.', motif: 'couple' },
-    { title: 'Accommodation', body: 'A room block is held at the venue hotel; details to follow.', motif: 'dome' },
-    { title: 'Parking', body: 'Complimentary valet parking is available on-site.', motif: 'horses' },
-    { title: 'Kids', body: "We'd love to see the little ones celebrate with us.", motif: 'children' },
+    { title: 'Dress Code', body: 'Traditional or festive attire — think color and comfort.', icon: 'dressCode' },
+    { title: 'Accommodation', body: 'A room block is held at the venue hotel; details to follow.', icon: 'accommodation' },
+    { title: 'Parking', body: 'Complimentary valet parking is available on-site.', icon: 'parking' },
+    { title: 'Kids', body: "We'd love to see the little ones celebrate with us.", icon: 'kids' },
   ],
   rsvp: {
     whatsapp: '', // e.g. "911234567890" (country code + number, no + or spaces)
     message: "Yes, I'll be there!",
   },
 };
+
+// ═══════════════════════════════════
+// Hand-drawn line icons (no external images) — 24x24, stroke = currentColor
+// ═══════════════════════════════════
+const ICONS = {
+  mehendi: '<path d="M12 4c4.2 0 7.5 3.2 7.5 7.3 0 5.3-4.2 8.4-7 11.7-1.1-3-.2-5.4.3-7.6.4-1.8-.9-3.4-2.8-3.4-1.7 0-3 1.3-3 3 0 .9.4 1.7 1 2.2C6 16.3 4.5 14 4.5 11.3 4.5 7.2 7.8 4 12 4z"/>',
+  sangeet: '<path d="M9 18.5V6.2l10-2v11.8"/><circle cx="6.8" cy="18.5" r="2.3"/><circle cx="16.8" cy="16" r="2.3"/>',
+  ceremony: '<circle cx="9" cy="14.5" r="5.8"/><circle cx="15" cy="14.5" r="5.8"/>',
+  reception: '<path d="M7.5 3.5h9l-1.1 6.4a3.4 3.4 0 01-6.8 0L7.5 3.5z"/><path d="M12 13.7V20"/><path d="M8 20.5h8"/>',
+  dressCode: '<path d="M12 3.2a1.8 1.8 0 011.8 1.8c0 .8-.5 1.4-1.2 1.7L12 7v1.3"/><path d="M12 8.3l9.5 6.2H2.5L12 8.3z"/><path d="M4 18.8h16"/>',
+  accommodation: '<path d="M3 18.5v-5.8a2 2 0 012-2h14a2 2 0 012 2v5.8"/><path d="M3 18.5v2.3"/><path d="M21 18.5v2.3"/><path d="M3 12.7V9.5a2 2 0 012-2h4a2 2 0 012 2v3.2"/>',
+  parking: '<path d="M5.2 16.2l1.3-4.6a2 2 0 011.9-1.4h7.2a2 2 0 011.9 1.4l1.3 4.6"/><path d="M4 16.2h16v3a1 1 0 01-1 1h-.8a1 1 0 01-1-1v-1H6.8v1a1 1 0 01-1 1H5a1 1 0 01-1-1v-3z"/><circle cx="7.3" cy="16.2" r="1.2"/><circle cx="16.7" cy="16.2" r="1.2"/>',
+  kids: '<ellipse cx="12" cy="9.5" rx="5" ry="6"/><path d="M12 15.5l-1.1 1.8 1.1 1 1.1-1-1.1-1.8z"/><path d="M12 18.3c1 .9 2.2 1.9 1 3.9"/>',
+  camera: '<path d="M4 8.5A1.5 1.5 0 015.5 7h2l1-2h7l1 2h2A1.5 1.5 0 0120 8.5v9A1.5 1.5 0 0118.5 19h-13A1.5 1.5 0 014 17.5v-9z"/><circle cx="12" cy="13" r="3.6"/>',
+};
+
+function iconMarkup(name, extraClass) {
+  const path = ICONS[name] || ICONS.camera;
+  return `<span class="icon-badge${extraClass ? ' ' + extraClass : ''}" aria-hidden="true">
+    <svg class="icon-badge-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${path}</svg>
+  </span>`;
+}
+
+function staggerDelay(i) {
+  return `style="transition-delay:${Math.min(i, 6) * 90}ms"`;
+}
 
 // ═══════════════════════════════════
 // Populate content from config
@@ -63,9 +89,9 @@ function populateCouple() {
 function renderEvents() {
   const list = document.getElementById('eventsList');
   if (!list) return;
-  list.innerHTML = WEDDING_CONFIG.events.map((evt) => `
-    <div class="event-card reveal-item" role="listitem">
-      <span class="event-icon motif motif--${evt.motif}" aria-hidden="true"></span>
+  list.innerHTML = WEDDING_CONFIG.events.map((evt, i) => `
+    <div class="event-card reveal-item" role="listitem" ${staggerDelay(i)}>
+      ${iconMarkup(evt.icon, i % 2 ? 'icon-badge--emerald' : '')}
       <p class="event-name">${evt.name}</p>
       <svg viewBox="0 0 60 8" class="event-rule" aria-hidden="true"><path d="M0 4h24M36 4h24"/><circle cx="30" cy="4" r="2.5"/></svg>
       <p class="event-time">${evt.time}</p>
@@ -78,9 +104,9 @@ function renderEvents() {
 function renderThingsToKnow() {
   const grid = document.getElementById('ttkGrid');
   if (!grid) return;
-  grid.innerHTML = WEDDING_CONFIG.thingsToKnow.map((card) => `
-    <li class="ttk-card reveal-item">
-      <span class="ttk-icon motif motif--${card.motif}" aria-hidden="true"></span>
+  grid.innerHTML = WEDDING_CONFIG.thingsToKnow.map((card, i) => `
+    <li class="ttk-card reveal-item" ${staggerDelay(i)}>
+      ${iconMarkup(card.icon, i % 2 ? 'icon-badge--emerald' : '')}
       <p class="ttk-card-title">${card.title}</p>
       <p class="ttk-card-body">${card.body}</p>
     </li>
@@ -100,10 +126,10 @@ function renderGallery() {
   galleryPhotos = photos.length ? photos : Array.from({ length: placeholderCount }, () => null);
 
   grid.innerHTML = galleryPhotos.map((src, i) => `
-    <button class="gallery-tile reveal-item" data-index="${i}" role="listitem" aria-label="Open photo ${i + 1}">
+    <button class="gallery-tile reveal-item" data-index="${i}" role="listitem" aria-label="Open photo ${i + 1}" ${staggerDelay(i)}>
       ${src
         ? `<img src="${src}" alt="" loading="lazy" decoding="async" />`
-        : `<span class="gallery-tile-placeholder">Add photo</span>`}
+        : `${iconMarkup('camera')}<span class="gallery-tile-placeholder">Add photo</span>`}
     </button>
   `).join('');
 

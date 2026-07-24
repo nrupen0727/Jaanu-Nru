@@ -16,7 +16,8 @@
 <section class="intro" id="intro" role="button" tabindex="0" aria-label="Ring the bell to begin the celebration">
   <div class="intro-bg" aria-hidden="true">
     <video class="intro-video" playsinline webkit-playsinline
-           preload="auto"
+           preload="auto" disablepictureinpicture disableremoteplayback
+           controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
            autoplay muted loop>
       <source src="assets/stock/intro.mp4" type="video/mp4" />
     </video>
@@ -33,15 +34,13 @@
 
   <!-- ══════════ HERO ══════════ -->
   <section class="section hero-section" id="hero" aria-label="Jainee and Nrupen">
-    <div class="hero-bg-wash" aria-hidden="true">
-      <img src="assets/peacock-terrace.jpg" alt="" />
-    </div>
     <div class="hero-corner hero-corner--tl" aria-hidden="true"></div>
     <div class="hero-corner hero-corner--tr" aria-hidden="true"></div>
     <div class="hero-corner hero-corner--bl" aria-hidden="true"></div>
     <div class="hero-corner hero-corner--br" aria-hidden="true"></div>
 
     <div class="hero-content">
+      <img class="hero-logo" src="assets/logo.png" alt="Jainee and Nrupen logo" />
       <p class="hero-eyebrow">We're getting married</p>
       <h1 class="hero-names">
         <span class="hero-name" id="heroBride">Jainee</span>
@@ -62,8 +61,8 @@
   <!-- ══════════ INVITE ══════════ -->
   <section class="section invite-section" id="invite" aria-labelledby="inviteNames">
     <div class="invite-card reveal-item">
-      <span class="invite-flourish invite-flourish--l motif motif--peacock" aria-hidden="true"></span>
-      <span class="invite-flourish invite-flourish--r motif motif--dome" aria-hidden="true"></span>
+      <svg class="invite-flourish invite-flourish--l" viewBox="0 0 40 40" aria-hidden="true"><path d="M2 38C2 18 18 2 38 2" /><circle cx="38" cy="2" r="2.5" /></svg>
+      <svg class="invite-flourish invite-flourish--r" viewBox="0 0 40 40" aria-hidden="true"><path d="M38 38C38 18 22 2 2 2" /><circle cx="2" cy="2" r="2.5" /></svg>
       <p class="invite-overline">With the blessings of our families</p>
       <p class="invite-kicker">We joyfully invite you to celebrate<br>the wedding of</p>
       <svg viewBox="0 0 200 20" class="invite-rule" aria-hidden="true"><path d="M0 10h70M130 10h70" /><circle cx="100" cy="10" r="4"/></svg>
@@ -100,9 +99,7 @@
 
   <!-- ══════════ OUR STORY ══════════ -->
   <section class="section story-section" id="story" aria-labelledby="storyTitle">
-    <figure class="story-frame reveal-item">
-      <img src="assets/peacock-terrace.jpg" alt="A Rajasthani miniature painting of a woman addressing a peacock on a palace terrace" />
-    </figure>
+    <img class="story-watermark" src="assets/logo.png" alt="" aria-hidden="true" />
     <div class="story-content reveal-item">
       <p class="story-eyebrow">A love story</p>
       <h2 class="story-title" id="storyTitle">Our Story</h2>
@@ -142,9 +139,6 @@
 
   <!-- ══════════ RSVP ══════════ -->
   <section class="section rsvp-section" id="rsvp" aria-labelledby="rsvpHeadline">
-    <div class="rsvp-bg" aria-hidden="true">
-      <img src="assets/palace-courtyard.jpg" alt="" />
-    </div>
     <canvas class="rsvp-fireworks" id="rsvpFireworks" aria-hidden="true"></canvas>
     <div class="rsvp-content reveal-item">
       <p class="rsvp-eyebrow">Join the celebration</p>
@@ -171,7 +165,7 @@
   <!-- ══════════ COUNTDOWN ══════════ -->
   <section class="section countdown-section" id="countdown" aria-labelledby="countdownTitle">
     <div class="countdown-garland reveal-item" aria-hidden="true">
-      <img src="assets/royal-couple.jpg" alt="" />
+      <svg viewBox="0 0 200 24" class="countdown-garland-svg"><path d="M0 12h70M130 12h70"/><circle cx="100" cy="12" r="5"/><circle cx="80" cy="12" r="2.5"/><circle cx="120" cy="12" r="2.5"/></svg>
     </div>
     <div class="countdown-header reveal-item">
       <h2 class="countdown-title" id="countdownTitle">
@@ -190,10 +184,10 @@
 </main>
 
 <footer class="site-footer" id="siteFooter">
+  <img class="ft-logo" src="assets/logo.png" alt="Jainee and Nrupen logo" />
   <p class="ft-names"><span id="ftBride">Jainee</span> <span class="amp">&amp;</span> <span id="ftGroom">Nrupen</span></p>
   <p class="ft-date" id="ftDate">12th December 2026</p>
   <p class="ft-tagline">Forever begins today</p>
-  <p class="ft-credit">Artwork courtesy of the <a href="https://www.clevelandart.org/open-access" target="_blank" rel="noreferrer">Cleveland Museum of Art</a>, Open Access (CC0)</p>
 </footer>
 
 <!-- Floating section nav -->
