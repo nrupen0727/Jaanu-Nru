@@ -42,10 +42,11 @@ img { max-width: 100%; display: block; }
   inset: 0;
   z-index: 100;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   background: var(--cream);
   cursor: pointer;
+  padding-bottom: clamp(2rem, 7vh, 3.5rem);
   transition: opacity 0.6s ease 0.15s, visibility 0.6s ease 0.15s, transform 0.75s ease;
 }
 
@@ -106,20 +107,22 @@ body:not(.intro-active) .intro {
 
 .intro-hint-label {
   font-family: var(--font-heading);
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--ink);
-  text-shadow: 0 1px 3px rgba(255, 250, 245, 0.8), 0 0 12px rgba(255, 250, 245, 0.6);
-  margin: 0 0 0.35rem;
+  color: var(--ivory);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  margin: 0 0 0.5rem;
 }
 
 .intro-hint-sub {
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink);
-  text-shadow: 0 1px 3px rgba(255, 250, 245, 0.8), 0 0 12px rgba(255, 250, 245, 0.6);
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  color: var(--gold-light);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   margin: 0;
 }
 
