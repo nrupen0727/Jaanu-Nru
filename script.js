@@ -359,11 +359,7 @@ function initIntro() {
   let revealed = false;
 
   if (introVideo) {
-    // Reveal the video only once frames are actually playing — on browsers
-    // that block muted autoplay (e.g. iOS Low Power Mode), the cream cover
-    // stays up until the user's tap forces playback in enter() below.
-    introVideo.addEventListener('playing', () => intro.classList.add('video-live'));
-    introVideo.play().catch(() => {});
+    introVideo.play().catch(() => {}); // muted background loop; browsers may still block until a gesture
   }
 
   function reveal() {
