@@ -117,24 +117,19 @@
       <p class="gallery-eyebrow">Moments</p>
       <h2 class="gallery-title" id="galleryTitle">Gallery</h2>
     </div>
-    <div class="gallery-grid" id="galleryGrid" role="list" aria-label="Photo gallery"></div>
 
-    <div class="gallery-lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
-      <button class="gallery-lb-close" id="galleryLbClose" aria-label="Close">&#10005;</button>
-      <button class="gallery-lb-prev" id="galleryLbPrev" aria-label="Previous photo">&#8249;</button>
-      <button class="gallery-lb-next" id="galleryLbNext" aria-label="Next photo">&#8250;</button>
-      <div class="gallery-lb-inner" id="galleryLbInner"></div>
+    <div class="gallery-carousel reveal-item">
+      <button class="gallery-nav gallery-nav--prev" id="galleryPrev" aria-label="Previous photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <div class="gallery-frame" id="galleryFrame" aria-live="polite"></div>
+      <button class="gallery-nav gallery-nav--next" id="galleryNext" aria-label="Next photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
     </div>
-  </section>
 
-  <!-- ══════════ THINGS TO KNOW ══════════ -->
-  <section class="section ttk-section" id="things" aria-labelledby="ttkTitle">
-    <div class="ttk-header reveal-item">
-      <p class="ttk-eyebrow">Guest Essentials</p>
-      <h2 class="ttk-title" id="ttkTitle">Things to Know</h2>
-      <p class="ttk-subline">A few thoughtful details to help you celebrate with ease.</p>
-    </div>
-    <ul class="ttk-grid" id="ttkGrid" role="list" aria-label="Guest information cards"></ul>
+    <p class="gallery-caption">Moments we love</p>
+    <div class="gallery-dots" id="galleryDots" role="tablist" aria-label="Gallery navigation"></div>
   </section>
 
   <!-- ══════════ RSVP ══════════ -->
@@ -198,7 +193,6 @@
     <a class="nav-link" href="#events">Events</a>
     <a class="nav-link" href="#story">Our Story</a>
     <a class="nav-link" href="#gallery">Gallery</a>
-    <a class="nav-link" href="#things">Things to Know</a>
     <a class="nav-link" href="#rsvp">RSVP</a>
     <a class="nav-link" href="#countdown">Countdown</a>
   </nav>
