@@ -400,6 +400,10 @@ body:not(.intro-active) .intro {
   margin: 0 0 2.5rem;
 }
 
+.story-title {
+  margin-bottom: 0.75rem;
+}
+
 .events-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
