@@ -429,8 +429,12 @@ body:not(.intro-active) .intro {
 
 .card-portrait {
   display: block;
-  width: 150px;
+  width: 92px;
   margin: 0 auto 0.75rem;
+}
+
+.card-portrait--emblem {
+  width: 110px;
 }
 
 .card-portrait img {
