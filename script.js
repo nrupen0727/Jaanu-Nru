@@ -21,9 +21,9 @@ const WEDDING_CONFIG = {
       venue: "Nrupen's Home",
       mapQuery: "Nrupen's Home, Ahmedabad, Gujarat, India",
       events: [
-        { name: 'Kankotri', time: '10:00 AM', date: '1st February 2027', dress: 'Traditional Indian attire' },
-        { name: 'Grahshanti & Mameru', time: '1:30 PM onwards', date: '4th February 2027', dress: 'Traditional Indian attire' },
-        { name: 'Haldi', time: '6:00 PM onwards', date: '6th February 2027', dress: 'Yellow attire' },
+        { name: 'Kankotri', time: '10:00 AM', date: '1st February 2027' },
+        { name: 'Grahshanti & Mameru', time: '1:30 PM onwards', date: '4th February 2027' },
+        { name: 'Haldi', time: '6:00 PM onwards', date: '6th February 2027' },
       ],
     },
     {
@@ -32,15 +32,16 @@ const WEDDING_CONFIG = {
       venue: "Jaanu's Home",
       mapQuery: "Jaanu's Home, Ahmedabad, Gujarat, India",
       events: [
-        { name: 'Grahshanti & Mameru', time: '7:00 AM onwards', date: '4th February 2027', dress: 'Traditional Indian attire' },
+        { name: 'Grahshanti', time: '7:00 AM onwards', date: '4th February 2027' },
+        { name: 'Mameru', time: '7:00 AM onwards', date: '4th February 2027' },
       ],
     },
   ],
   // Row 2: single-event cards
   events: [
-    { name: 'Mehendi', time: '5:00 PM onwards', date: '3rd February 2027', venue: 'Ahmedabad', icon: 'mehendi', mapQuery: 'Ahmedabad, Gujarat, India', dress: 'Yellow & green — festive colors' },
-    { name: 'Garba', time: '7:00 PM onwards', date: '5th February 2027', venue: 'Madhuban Party Plot, Koba', note: 'ft. Bhumik Shah', icon: 'garba', mapQuery: 'Madhuban Party Plot, Koba, Gujarat, India', dress: 'Chaniya choli / kurta — traditional Garba wear' },
-    { name: 'Wedding — Baarat & Rituals', time: 'Baarat 2:00 PM · Rituals 5:30 PM', date: '7th February 2027', venue: 'Infocity Club and Resort', icon: 'ceremony', mapQuery: 'Infocity Club and Resort, Gujarat, India', dress: 'Traditional formal Indian attire' },
+    { name: 'Mehendi', time: '5:00 PM onwards', date: '3rd February 2027', venue: 'Ahmedabad', icon: 'mehendi', mapQuery: 'Ahmedabad, Gujarat, India' },
+    { name: 'Garba', time: '7:00 PM onwards', date: '5th February 2027', venue: 'Madhuban Party Plot, Koba', note: 'ft. Bhumik Shah', icon: 'garba', mapQuery: 'Madhuban Party Plot, Koba, Gujarat, India' },
+    { name: 'Wedding — Baarat & Rituals', time: 'Baarat 2:00 PM · Rituals 5:30 PM', date: '7th February 2027', venue: 'Infocity Club and Resort', icon: 'ceremony', mapQuery: 'Infocity Club and Resort, Gujarat, India' },
   ],
   story: "Add your story here — how you met, your favorite memory together, and the moment you knew. This placeholder text can be swapped for your real story whenever you're ready.",
   gallery: {
@@ -110,7 +111,6 @@ function eventCardHtml(evt, i) {
       <p class="event-date">${evt.date}</p>
       <p class="event-venue">${evt.venue}</p>
       ${evt.note ? `<p class="event-note">${evt.note}</p>` : ''}
-      ${evt.dress ? `<p class="event-dress">Dress code: ${evt.dress}</p>` : ''}
       ${evt.mapQuery ? `
         <a class="event-map-link" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(evt.mapQuery)}" target="_blank" rel="noreferrer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICONS.pin}</svg>
@@ -133,7 +133,6 @@ function ritualCardHtml(card, i) {
             <p class="ritual-sub-name">${sub.name}</p>
             <p class="ritual-sub-meta">${sub.time}</p>
             <p class="ritual-sub-meta">${sub.date}</p>
-            ${sub.dress ? `<p class="ritual-sub-dress">Dress code: ${sub.dress}</p>` : ''}
           </div>
         `).join('')}
       </div>

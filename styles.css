@@ -459,14 +459,6 @@ body:not(.intro-active) .intro {
   margin: 0.1rem 0;
 }
 
-.ritual-sub-dress {
-  font-size: 0.75rem;
-  font-style: italic;
-  color: var(--ink);
-  opacity: 0.6;
-  margin: 0.25rem 0 0;
-}
-
 .event-card {
   border: 1px solid var(--gold-light);
   background: var(--ivory);
@@ -551,15 +543,6 @@ body:not(.intro-active) .intro {
   margin: 0.35rem 0 0;
 }
 
-.event-dress {
-  font-size: 0.78rem;
-  letter-spacing: 0.03em;
-  color: var(--ink);
-  opacity: 0.65;
-  margin: 0.75rem 0 0;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--gold-light);
-}
 
 .event-map-link {
   display: inline-flex;
