@@ -643,6 +643,8 @@ body:not(.intro-active) .intro {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: min(360px, 68vw);
+  margin: 0 auto;
 }
 
 .gallery-frame {
@@ -948,6 +950,7 @@ body:not(.intro-active) .intro {
   flex-direction: column;
   align-items: flex-end;
   gap: 0.75rem;
+  pointer-events: none;
 }
 
 .fab {
@@ -963,6 +966,7 @@ body:not(.intro-active) .intro {
   justify-content: center;
   gap: 4px;
   box-shadow: 0 6px 18px rgba(107, 30, 46, 0.18);
+  pointer-events: auto;
 }
 
 .fab-line {
