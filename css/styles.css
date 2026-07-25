@@ -595,7 +595,7 @@ body:not(.intro-active) .intro {
 
 .story-content { position: relative; }
 
-.story-body-wrap { position: relative; }
+.story-body-wrap { position: relative; overflow: hidden; }
 
 .story-watermark {
   position: absolute;
