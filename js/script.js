@@ -11,9 +11,9 @@ const WEDDING_CONFIG = {
   },
   invite: {
     brideGrandparents: 'Granddaughter of Lt. Veljibhai & Lt. Surajben Chaudhary',
-    brideParents: 'daughter of Mr. Deepak and Neela Chaudhary',
+    brideParents: 'daughter of Mr. Deepak & Mrs. Neela Chaudhary',
     groomGrandparents: 'Grandson of Lt. Sankabhai & Mrs. Manguben Patel',
-    groomParents: 'son of Mr. Dinesh and Mrs. Jigisha Patel',
+    groomParents: 'son of Mr. Dinesh & Mrs. Jigisha Patel',
   },
   // Row 1: grouped multi-event ritual cards (one per household)
   ritualCards: [
