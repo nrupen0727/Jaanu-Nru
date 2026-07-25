@@ -365,17 +365,26 @@ function initFireworks() {
   function spawnBurst() {
     const cx = width * (0.15 + Math.random() * 0.7);
     const cy = height * (0.08 + Math.random() * 0.16);
-    const count = 28 + Math.floor(Math.random() * 12);
     const color = colors[Math.floor(Math.random() * colors.length)];
+
+    // Bright flash at the moment of ignition — quick, not a lingering glow
+    particles.push({
+      x: cx, y: cy, vx: 0, vy: 0,
+      life: 1, decay: 0.05,
+      color: '#fffaf5',
+      flash: true,
+    });
+
+    const count = 46 + Math.floor(Math.random() * 22);
     for (let i = 0; i < count; i += 1) {
-      const angle = (Math.PI * 2 * i) / count + Math.random() * 0.2;
-      const speed = 1.1 + Math.random() * 2.2;
+      const angle = (Math.PI * 2 * i) / count + Math.random() * 0.25;
+      const speed = 2.2 + Math.random() * 3.6;
       particles.push({
         x: cx, y: cy,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
         life: 1,
-        decay: 0.007 + Math.random() * 0.006,
+        decay: 0.009 + Math.random() * 0.008,
         color,
       });
     }
@@ -386,15 +395,17 @@ function initFireworks() {
     particles.forEach((p) => {
       p.x += p.vx;
       p.y += p.vy;
-      p.vy += 0.012;
+      p.vx *= 0.985;
+      p.vy += 0.014;
       p.life -= p.decay;
       if (p.life > 0) {
-        ctx.globalAlpha = p.life;
+        ctx.globalAlpha = p.flash ? p.life * 0.8 : p.life;
         ctx.fillStyle = p.color;
         ctx.shadowColor = p.color;
-        ctx.shadowBlur = 6;
+        ctx.shadowBlur = p.flash ? 0 : 7;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 2.2, 0, Math.PI * 2);
+        const radius = p.flash ? 26 * p.life : 1.4 + p.life * 2.2;
+        ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
         ctx.fill();
       }
     });
@@ -410,7 +421,7 @@ function initFireworks() {
     resize();
     spawnBurst();
     tick();
-    spawnTimer = setInterval(spawnBurst, 1800);
+    spawnTimer = setInterval(spawnBurst, 1900);
   }
 
   function stop() {
