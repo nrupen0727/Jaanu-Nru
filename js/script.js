@@ -41,10 +41,15 @@ const WEDDING_CONFIG = {
     { name: 'Garba', time: '7:00 PM onwards', date: '5th February 2027', venue: 'Madhuban Party Plot, Koba', note: 'ft. Bhumik Shah', portrait: 'assets/images/sangeet-couple.png', portraitNudge: -3.2, mapQuery: 'Madhuban Party Plot, Koba, Gujarat, India' },
     { name: 'Wedding', time: 'Baarat 2:00 PM<br>Rituals 5:30 PM', date: '7th February 2027', venue: 'Infocity Club and Resort', portrait: 'assets/images/wedding-couple.png', portraitNudge: -2.9, mapQuery: 'Infocity Club and Resort, Gujarat, India' },
   ],
-  story: "Add your story here — how you met, your favorite memory together, and the moment you knew. This placeholder text can be swapped for your real story whenever you're ready.",
+  story: "What once felt like a dream is now our reality. From sharing classrooms to sharing a lifetime, from growing up together to growing old in love—this is only the beginning.",
   gallery: {
-    // Replace with real photo URLs (e.g. "assets/gallery/photo1.jpg") when ready.
-    photos: [],
+    photos: [
+      "assets/gallery/photo1.jpg",
+      "assets/gallery/photo2.jpg",
+      "assets/gallery/photo3.jpg",
+      "assets/gallery/photo4.jpg",
+      "assets/gallery/photo5.jpg",
+    ],
     placeholderCount: 4,
   },
   rsvp: {
