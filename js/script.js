@@ -212,8 +212,6 @@ function stepGallery(delta) {
 }
 
 function initGalleryControls() {
-  document.getElementById('galleryPrev')?.addEventListener('click', () => stepGallery(-1));
-  document.getElementById('galleryNext')?.addEventListener('click', () => stepGallery(1));
   document.addEventListener('keydown', (e) => {
     const gallery = document.getElementById('gallery');
     if (!gallery) return;
@@ -223,6 +221,23 @@ function initGalleryControls() {
     if (e.key === 'ArrowLeft') stepGallery(-1);
     if (e.key === 'ArrowRight') stepGallery(1);
   });
+
+  const frame = document.getElementById('galleryFrame');
+  if (frame) {
+    let touchStartX = 0;
+    let touchStartY = 0;
+    frame.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].clientX;
+      touchStartY = e.changedTouches[0].clientY;
+    }, { passive: true });
+    frame.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        stepGallery(dx < 0 ? 1 : -1);
+      }
+    }, { passive: true });
+  }
 }
 
 // ═══════════════════════════════════
