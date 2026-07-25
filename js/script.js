@@ -37,9 +37,9 @@ const WEDDING_CONFIG = {
   ],
   // Row 2: single-event cards
   events: [
-    { name: 'Mehendi', time: '5:00 PM onwards', date: '3rd February 2027', venue: 'Ahmedabad', portrait: 'assets/mehendi-couple.png', portraitNudge: -9.5, mapQuery: 'Ahmedabad, Gujarat, India' },
-    { name: 'Garba', time: '7:00 PM onwards', date: '5th February 2027', venue: 'Madhuban Party Plot, Koba', note: 'ft. Bhumik Shah', portrait: 'assets/sangeet-couple.png', portraitNudge: -3.2, mapQuery: 'Madhuban Party Plot, Koba, Gujarat, India' },
-    { name: 'Wedding — Baarat & Rituals', time: 'Baarat 2:00 PM · Rituals 5:30 PM', date: '7th February 2027', venue: 'Infocity Club and Resort', portrait: 'assets/wedding-couple.png', portraitNudge: -2.9, mapQuery: 'Infocity Club and Resort, Gujarat, India' },
+    { name: 'Mehendi', time: '5:00 PM onwards', date: '3rd February 2027', venue: 'Ahmedabad', portrait: 'assets/images/mehendi-couple.png', portraitNudge: -9.5, mapQuery: 'Ahmedabad, Gujarat, India' },
+    { name: 'Garba', time: '7:00 PM onwards', date: '5th February 2027', venue: 'Madhuban Party Plot, Koba', note: 'ft. Bhumik Shah', portrait: 'assets/images/sangeet-couple.png', portraitNudge: -3.2, mapQuery: 'Madhuban Party Plot, Koba, Gujarat, India' },
+    { name: 'Wedding', time: 'Baarat 2:00 PM<br>Rituals 5:30 PM', date: '7th February 2027', venue: 'Infocity Club and Resort', portrait: 'assets/images/wedding-couple.png', portraitNudge: -2.9, mapQuery: 'Infocity Club and Resort, Gujarat, India' },
   ],
   story: "Add your story here — how you met, your favorite memory together, and the moment you knew. This placeholder text can be swapped for your real story whenever you're ready.",
   gallery: {
@@ -118,7 +118,7 @@ function eventCardHtml(evt, i) {
 function ritualCardHtml(card, i) {
   return `
     <div class="event-card ritual-card reveal-item" role="listitem" ${staggerDelay(i)}>
-      <span class="card-portrait card-portrait--emblem" aria-hidden="true"><img src="assets/ritual-elephant.png" alt="" loading="lazy" decoding="async" /></span>
+      <span class="card-portrait card-portrait--emblem" aria-hidden="true"><img src="assets/images/ritual-elephant.png" alt="" loading="lazy" decoding="async" /></span>
       <p class="event-name">${card.name}</p>
       <svg viewBox="0 0 60 8" class="event-rule" aria-hidden="true"><path d="M0 4h24M36 4h24"/><circle cx="30" cy="4" r="2.5"/></svg>
       <div class="ritual-sub-list">
