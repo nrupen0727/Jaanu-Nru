@@ -224,6 +224,30 @@ function initGalleryControls() {
 
   const frame = document.getElementById('galleryFrame');
   if (frame) {
+    let startX = 0;
+    let startY = 0;
+    let dragging = false;
+
+    frame.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      try { frame.setPointerCapture(e.pointerId); } catch (err) { /* noop */ }
+    });
+
+    frame.addEventListener('pointerup', (e) => {
+      if (!dragging) return;
+      dragging = false;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        stepGallery(dx < 0 ? 1 : -1);
+      }
+    });
+
+    frame.addEventListener('pointercancel', () => { dragging = false; });
+
+    // Touch fallback for older browsers without Pointer Events support
     let touchStartX = 0;
     let touchStartY = 0;
     frame.addEventListener('touchstart', (e) => {
@@ -231,6 +255,7 @@ function initGalleryControls() {
       touchStartY = e.changedTouches[0].clientY;
     }, { passive: true });
     frame.addEventListener('touchend', (e) => {
+      if (window.PointerEvent) return; // pointerup already handled it
       const dx = e.changedTouches[0].clientX - touchStartX;
       const dy = e.changedTouches[0].clientY - touchStartY;
       if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {

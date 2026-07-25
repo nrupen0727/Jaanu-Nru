@@ -659,12 +659,21 @@ body:not(.intro-active) .intro {
   opacity: 0;
   cursor: grab;
   touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
   transition: opacity 0.25s ease;
 }
 
 .gallery-frame.is-visible { opacity: 1; }
 
-.gallery-frame img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  pointer-events: none;
+}
 
 .gallery-frame-placeholder {
   font-family: var(--font-heading);
