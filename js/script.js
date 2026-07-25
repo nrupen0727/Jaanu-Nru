@@ -10,7 +10,9 @@ const WEDDING_CONFIG = {
     venue: 'Ahmedabad, Gujarat, India',
   },
   invite: {
+    brideGrandparents: 'Granddaughter of Lt. Veljibhai & Lt. Surajben Chaudhary',
     brideParents: 'daughter of Mr. Deepak and Neela Chaudhary',
+    groomGrandparents: 'Grandson of Lt. Sankabhai & Mrs. Manguben Patel',
     groomParents: 'son of Mr. Dinesh and Mrs. Jigisha Patel',
   },
   // Row 1: grouped multi-event ritual cards (one per household)
@@ -38,7 +40,7 @@ const WEDDING_CONFIG = {
   // Row 2: single-event cards
   events: [
     { name: 'Mehendi', time: '5:00 PM onwards', date: '3rd February 2027', venue: 'Ahmedabad', portrait: 'assets/images/mehendi-couple.png', portraitNudge: -9.5, mapQuery: 'Ahmedabad, Gujarat, India' },
-    { name: 'Garba', time: '7:00 PM onwards', date: '5th February 2027', venue: 'Madhuban Party Plot, Koba', note: 'ft. Bhumik Shah', portrait: 'assets/images/sangeet-couple.png', portraitNudge: -3.2, mapQuery: 'Madhuban Party Plot, Koba, Gujarat, India' },
+    { name: 'Garba', time: '7:00 PM onwards', date: '5th February 2027', venue: 'Madhuvan Party Plot, Koba Circle', note: 'ft. Bhumik Shah', portrait: 'assets/images/sangeet-couple.png', portraitNudge: -3.2, mapQuery: 'Madhuvan Party Plot, Koba Circle, Gujarat, India' },
     { name: 'Wedding', time: 'Baarat 2:00 PM<br>Rituals 5:30 PM', date: '7th February 2027', venue: 'Infocity Club and Resort', portrait: 'assets/images/wedding-couple.png', portraitNudge: -2.9, mapQuery: 'Infocity Club and Resort, Gujarat, India' },
   ],
   story: "What once felt like a dream is now our reality. From sharing classrooms to sharing a lifetime, from growing up together to growing old in love—this is only the beginning.",
@@ -91,9 +93,13 @@ function populateCouple() {
   textAll('#introDate, #heroDate, #inviteDate, #ftDate', dateDisplay);
   textAll('#heroVenue, #inviteVenue', venue);
 
+  const brideGrandparents = document.getElementById('inviteBrideGrandparents');
   const brideParents = document.getElementById('inviteBrideParents');
+  const groomGrandparents = document.getElementById('inviteGroomGrandparents');
   const groomParents = document.getElementById('inviteGroomParents');
+  if (brideGrandparents) brideGrandparents.textContent = WEDDING_CONFIG.invite.brideGrandparents;
   if (brideParents) brideParents.textContent = WEDDING_CONFIG.invite.brideParents;
+  if (groomGrandparents) groomGrandparents.textContent = WEDDING_CONFIG.invite.groomGrandparents;
   if (groomParents) groomParents.textContent = WEDDING_CONFIG.invite.groomParents;
 
   const storyBody = document.getElementById('storyBody');
