@@ -20,7 +20,7 @@ const WEDDING_CONFIG = {
     {
       name: "Nrupen's Rituals",
       venue: "Nrupen's Home",
-      mapQuery: "Nrupen's Home, Ahmedabad, Gujarat, India",
+      mapUrl: 'https://maps.app.goo.gl/GoSG417C8pm4TfaK9',
       events: [
         { name: 'Kankotri', time: '10:00 AM', date: '1st February 2027' },
         { name: 'Grahshanti & Mameru', time: '1:30 PM onwards', date: '4th February 2027' },
@@ -30,7 +30,7 @@ const WEDDING_CONFIG = {
     {
       name: "Jaanu's Rituals",
       venue: "Jaanu's Home",
-      mapQuery: "Jaanu's Home, Ahmedabad, Gujarat, India",
+      mapUrl: 'https://maps.app.goo.gl/62Lep2MV7WaEYMTQ6',
       events: [
         { name: 'Grahshanti', time: '7:00 AM onwards', date: '4th February 2027' },
         { name: 'Mameru', time: '7:00 AM onwards', date: '4th February 2027' },
@@ -40,7 +40,7 @@ const WEDDING_CONFIG = {
   // Row 2: single-event cards
   events: [
     { name: 'Mehendi', time: '5:00 PM onwards', date: '3rd February 2027', venue: 'Ahmedabad', portrait: 'assets/images/mehendi-couple.png', portraitNudge: -9.5, mapQuery: 'Ahmedabad, Gujarat, India' },
-    { name: 'Garba', time: '7:00 PM onwards', date: '5th February 2027', venue: 'Madhuvan Party Plot, Koba Circle', note: 'ft. Bhumik Shah', portrait: 'assets/images/sangeet-couple.png', portraitNudge: -3.2, mapQuery: 'Madhuvan Party Plot, Koba Circle, Gujarat, India' },
+    { name: 'Garba', time: '6:00 PM onwards', date: '5th February 2027', venue: 'Madhuvan Party Plot, Koba Circle', note: 'ft. Bhumik Shah', portrait: 'assets/images/sangeet-couple.png', portraitNudge: -3.2, mapQuery: 'Madhuvan Party Plot, Koba Circle, Gujarat, India' },
     { name: 'Wedding', time: 'Baarat 2:00 PM<br>Rituals 5:30 PM', date: '7th February 2027', venue: 'Infocity Club and Resort', portrait: 'assets/images/wedding-couple.png', portraitNudge: -2.9, mapQuery: 'Infocity Club and Resort, Gujarat, India' },
   ],
   story: "What once felt like a dream is now our reality. From sharing classrooms to sharing a lifetime, from growing up together to growing old in love—this is only the beginning.",
@@ -106,6 +106,19 @@ function populateCouple() {
   if (storyBody) storyBody.textContent = WEDDING_CONFIG.story;
 }
 
+function mapLinkHtml(item) {
+  const url = item.mapUrl || (item.mapQuery
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.mapQuery)}`
+    : null);
+  if (!url) return '';
+  return `
+    <a class="event-map-link" href="${url}" target="_blank" rel="noreferrer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICONS.pin}</svg>
+      Get Directions
+    </a>
+  `;
+}
+
 function eventCardHtml(evt, i) {
   return `
     <div class="event-card reveal-item" role="listitem" ${staggerDelay(i)}>
@@ -116,12 +129,7 @@ function eventCardHtml(evt, i) {
       <p class="event-date">${evt.date}</p>
       <p class="event-venue">${evt.venue}</p>
       ${evt.note ? `<p class="event-note">${evt.note}</p>` : ''}
-      ${evt.mapQuery ? `
-        <a class="event-map-link" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(evt.mapQuery)}" target="_blank" rel="noreferrer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICONS.pin}</svg>
-          Get Directions
-        </a>
-      ` : ''}
+      ${mapLinkHtml(evt)}
     </div>
   `;
 }
@@ -142,12 +150,7 @@ function ritualCardHtml(card, i) {
         `).join('')}
       </div>
       <p class="event-venue">${card.venue}</p>
-      ${card.mapQuery ? `
-        <a class="event-map-link" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(card.mapQuery)}" target="_blank" rel="noreferrer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICONS.pin}</svg>
-          Get Directions
-        </a>
-      ` : ''}
+      ${mapLinkHtml(card)}
     </div>
   `;
 }
