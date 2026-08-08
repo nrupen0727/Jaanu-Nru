@@ -55,8 +55,8 @@ const WEDDING_CONFIG = {
     placeholderCount: 4,
   },
   rsvp: {
-    whatsapp: '', // e.g. "911234567890" (country code + number, no + or spaces)
-    message: "Yes, I'll be there!",
+    // Google Apps Script Web App URL (ends in /exec) — see deployment notes for setup.
+    sheetEndpoint: 'https://script.google.com/macros/s/AKfycbxjrysLOBNZeQrVaRZr76PkRlxhKT8TJNlvnySAhO5ijafLjPkPL-J8SF4hupm6gZm-gQ/exec',
   },
 };
 
@@ -272,21 +272,56 @@ function initGalleryControls() {
 // RSVP + calendar links
 // ═══════════════════════════════════
 function initRsvp() {
-  const { whatsapp, message } = WEDDING_CONFIG.rsvp;
+  const { sheetEndpoint } = WEDDING_CONFIG.rsvp;
   const { dateDisplay, venue, bride, groom, date } = WEDDING_CONFIG.couple;
 
-  const rsvpBtn = document.getElementById('rsvpBtn');
-  if (rsvpBtn) {
-    const text = encodeURIComponent(message);
-    rsvpBtn.href = whatsapp
-      ? `https://wa.me/${whatsapp}?text=${text}`
-      : '#';
-    if (!whatsapp) {
-      rsvpBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('Add your WhatsApp number to WEDDING_CONFIG.rsvp.whatsapp in script.js to enable this button.');
+  const form = document.getElementById('rsvpForm');
+  const formWrap = document.getElementById('rsvpFormWrap');
+  const success = document.getElementById('rsvpSuccess');
+  const guestRow = document.getElementById('rsvpGuestRow');
+  const submitBtn = document.getElementById('rsvpSubmitBtn');
+
+  if (form) {
+    form.querySelectorAll('input[name="rsvpAttend"]').forEach((radio) => {
+      radio.addEventListener('change', () => {
+        guestRow.classList.toggle('visible', radio.value === 'yes' && radio.checked);
       });
-    }
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!sheetEndpoint) {
+        alert('Add your Google Apps Script Web App URL to WEDDING_CONFIG.rsvp.sheetEndpoint in script.js to enable this form.');
+        return;
+      }
+
+      const name = document.getElementById('rsvpName').value.trim();
+      const attending = form.querySelector('input[name="rsvpAttend"]:checked').value;
+      const guests = attending === 'yes' ? document.getElementById('rsvpGuests').value : 0;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      fetch(sheetEndpoint, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ name, attending, guests }),
+      })
+        .then(() => {
+          document.getElementById('rsvpSuccessName').textContent = name || 'Friend';
+          document.getElementById('rsvpSuccessBody').textContent = attending === 'yes'
+            ? "We can't wait to celebrate with you."
+            : "We'll miss you, but thank you for letting us know.";
+          formWrap.style.display = 'none';
+          success.classList.add('visible');
+        })
+        .catch(() => {
+          alert('Something went wrong sending your RSVP — please try again.');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send RSVP';
+        });
+    });
   }
 
   const [y, m, d] = date.split('-');

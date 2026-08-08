@@ -783,6 +783,136 @@ body:not(.intro-active) .intro {
   margin: 1rem 0 2.5rem;
 }
 
+/* ---- RSVP form ---- */
+#rsvpForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  text-align: left;
+}
+
+.field > label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 0.6rem;
+}
+
+.field input[type="text"],
+.field input[type="number"] {
+  width: 100%;
+  background: rgba(255, 250, 245, 0.06);
+  border: 1px solid rgba(255, 250, 245, 0.3);
+  color: var(--ivory);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.65rem 0.8rem;
+  border-radius: 2px;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.field input::placeholder { color: rgba(255, 250, 245, 0.35); }
+.field input:focus {
+  outline: none;
+  border-color: var(--gold-light);
+  background: rgba(255, 250, 245, 0.1);
+}
+
+.attend-toggle {
+  display: flex;
+  gap: 0.6rem;
+}
+.attend-toggle input { position: absolute; opacity: 0; pointer-events: none; }
+.attend-toggle label { flex: 1; position: relative; }
+.attend-toggle .opt {
+  display: block;
+  text-align: center;
+  padding: 0.65rem 0.5rem;
+  border: 1px solid rgba(255, 250, 245, 0.3);
+  border-radius: 2px;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.attend-toggle input:checked + .opt {
+  background: var(--gold-light);
+  color: var(--maroon-dark);
+  border-color: var(--gold-light);
+}
+.attend-toggle input:focus-visible + .opt { outline: 2px solid var(--gold-light); outline-offset: 2px; }
+
+.guest-count-row { display: none; }
+.guest-count-row.visible { display: block; }
+
+.rsvp-submit {
+  margin-top: 0.4rem;
+  display: block;
+  width: 100%;
+  font-family: var(--font-heading);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--maroon-dark);
+  background: var(--gold-light);
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  border: 1px solid var(--gold-light);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.rsvp-submit:hover { background: transparent; color: var(--gold-light); }
+.rsvp-submit:disabled { opacity: 0.6; cursor: default; }
+
+/* ---- RSVP success state ---- */
+#rsvpSuccess { display: none; }
+#rsvpSuccess.visible {
+  display: block;
+  animation: rsvp-rise 0.5s ease both;
+}
+@keyframes rsvp-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #rsvpSuccess.visible { animation: none; }
+}
+
+.success-mark {
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 1.25rem;
+  border: 1px solid var(--gold-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.success-mark svg { width: 20px; height: 20px; }
+.success-mark path {
+  stroke: var(--gold-light);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: rsvp-draw 0.4s ease 0.35s forwards;
+}
+@keyframes rsvp-draw { to { stroke-dashoffset: 0; } }
+
+.success-title {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 1.4rem;
+  margin: 0 0 0.6rem;
+}
+
 .rsvp-cal-heading {
   font-family: var(--font-heading);
   font-size: 0.75rem;

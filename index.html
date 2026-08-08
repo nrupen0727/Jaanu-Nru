@@ -136,10 +136,44 @@
         We've saved a seat for you. Let us know you're coming — it takes one tap.
       </p>
 
-      <a class="rsvp-btn" id="rsvpBtn" href="#" target="_blank" rel="noreferrer">
-        <span id="rsvpBtnText">Yes, I'll be there</span>
-      </a>
-      <p class="rsvp-helper">You'll be redirected to WhatsApp to confirm your attendance.</p>
+      <div id="rsvpFormWrap">
+        <form id="rsvpForm">
+          <div class="field">
+            <label for="rsvpName">Your name</label>
+            <input type="text" id="rsvpName" placeholder="Full name" required>
+          </div>
+
+          <div class="field">
+            <label>Will you be attending?</label>
+            <div class="attend-toggle">
+              <label>
+                <input type="radio" name="rsvpAttend" value="yes" checked>
+                <span class="opt">Joyfully accept</span>
+              </label>
+              <label>
+                <input type="radio" name="rsvpAttend" value="no">
+                <span class="opt">Regretfully decline</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field guest-count-row visible" id="rsvpGuestRow">
+            <label for="rsvpGuests">Number of guests (including you)</label>
+            <input type="number" id="rsvpGuests" min="1" max="6" value="1">
+          </div>
+
+          <button type="submit" class="rsvp-submit" id="rsvpSubmitBtn">Send RSVP</button>
+          <p class="rsvp-helper">Your response goes straight to Jainee &amp; Nrupen — no account needed.</p>
+        </form>
+      </div>
+
+      <div id="rsvpSuccess">
+        <div class="success-mark">
+          <svg viewBox="0 0 24 24"><path d="M4 12l5 5 11-11"/></svg>
+        </div>
+        <h2 class="success-title">Thank you, <span id="rsvpSuccessName">Friend</span>!</h2>
+        <p class="rsvp-helper" id="rsvpSuccessBody">We can't wait to celebrate with you.</p>
+      </div>
 
       <div class="rsvp-cal">
         <p class="rsvp-cal-heading">Save the Date</p>
