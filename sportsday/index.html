@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Sports Day | Jainee &amp; Nrupen</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="description" content="Join us for a morning of team sports and games before the wedding festivities begin." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<header class="hero">
+  <div class="bunting" aria-hidden="true">
+    <svg viewBox="0 0 320 24" preserveAspectRatio="none" class="bunting-svg">
+      <polygon points="0,0 16,0 8,22" />
+      <polygon points="20,0 36,0 28,22" />
+      <polygon points="40,0 56,0 48,22" />
+      <polygon points="60,0 76,0 68,22" />
+      <polygon points="80,0 96,0 88,22" />
+      <polygon points="100,0 116,0 108,22" />
+      <polygon points="120,0 136,0 128,22" />
+      <polygon points="140,0 156,0 148,22" />
+      <polygon points="160,0 176,0 168,22" />
+      <polygon points="180,0 196,0 188,22" />
+      <polygon points="200,0 216,0 208,22" />
+      <polygon points="220,0 236,0 228,22" />
+      <polygon points="240,0 256,0 248,22" />
+      <polygon points="260,0 276,0 268,22" />
+      <polygon points="280,0 296,0 288,22" />
+      <polygon points="300,0 316,0 308,22" />
+    </svg>
+  </div>
+
+  <div class="sun" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Before the celebrations begin</p>
+    <h1 class="hero-title">Sports Day</h1>
+    <p class="hero-tagline">Team sports, classic games, and a little bit of childhood — all in one morning. Kids very welcome.</p>
+
+    <div class="hero-facts">
+      <div class="fact">
+        <span class="fact-label">Date</span>
+        <span class="fact-value">Sat, Jan 31, 2026</span>
+      </div>
+      <div class="fact">
+        <span class="fact-label">Time</span>
+        <span class="fact-value">10:00 AM</span>
+      </div>
+      <div class="fact">
+        <span class="fact-label">Venue</span>
+        <a class="fact-value fact-link" href="https://www.google.com/maps/search/?api=1&query=K.K+Farm%2C+Ahmedabad" target="_blank" rel="noreferrer">K.K Farm, Ahmedabad</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ ACTIVITIES ══════════ -->
+<section class="activities">
+  <div class="activity-card">
+    <span class="activity-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="8" />
+        <path d="M12 4v16M4 12h16M6.5 6.5l11 11M17.5 6.5l-11 11" />
+      </svg>
+    </span>
+    <h2>Team Sports</h2>
+    <p>Cricket, tug-of-war, relay races — pick a team and bring your competitive spirit.</p>
+  </div>
+  <div class="activity-card">
+    <span class="activity-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3l2.4 5.2 5.6.6-4.2 3.8 1.2 5.6L12 15.8 6.9 18.2l1.2-5.6L4 8.8l5.6-.6z" />
+      </svg>
+    </span>
+    <h2>Classic Games</h2>
+    <p>Musical chairs, three-legged race, sack race — all the games you grew up with.</p>
+  </div>
+  <div class="activity-card">
+    <span class="activity-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="12" cy="10" rx="6" ry="7" />
+        <path d="M12 17v4M9.5 21h5" />
+      </svg>
+    </span>
+    <h2>Kids Corner</h2>
+    <p>Face painting, bouncy fun, and games just for the little ones.</p>
+  </div>
+</section>
+
+<!-- ══════════ RSVP ══════════ -->
+<section class="rsvp-section" id="rsvp">
+  <div class="rsvp-content">
+    <div id="rsvpFormWrap">
+      <p class="rsvp-eyebrow">Save your spot</p>
+      <h2 class="rsvp-headline">Will you play?</h2>
+      <p class="rsvp-body">Let us know you're in — and your t-shirt size, so we can get yours made.</p>
+
+      <form id="rsvpForm">
+        <div class="field">
+          <label for="rsvpName">Your name</label>
+          <input type="text" id="rsvpName" placeholder="Full name" required>
+        </div>
+
+        <div class="field">
+          <label>Will you be joining?</label>
+          <div class="attend-toggle">
+            <label>
+              <input type="radio" name="rsvpAttend" value="yes" checked>
+              <span class="opt">Count me in</span>
+            </label>
+            <label>
+              <input type="radio" name="rsvpAttend" value="no">
+              <span class="opt">Can't make it</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field guest-count-row visible" id="rsvpGuestRow">
+          <label for="rsvpGuests">Number attending (including you)</label>
+          <input type="number" id="rsvpGuests" min="1" max="10" value="1">
+        </div>
+
+        <div class="field guest-count-row visible" id="rsvpSizesRow">
+          <label>T-shirt sizes</label>
+          <div id="rsvpSizes" class="sizes-grid"></div>
+        </div>
+
+        <button type="submit" class="rsvp-submit" id="rsvpSubmitBtn">Send RSVP</button>
+        <p class="rsvp-helper">This is a small, separate guest list — your response goes straight to Jainee &amp; Nrupen.</p>
+      </form>
+    </div>
+
+    <div id="rsvpSuccess">
+      <div class="success-mark">
+        <svg viewBox="0 0 24 24"><path d="M4 12l5 5 11-11"/></svg>
+      </div>
+      <h2 class="success-title">You're in, <span id="rsvpSuccessName">Friend</span>!</h2>
+      <p class="rsvp-helper" id="rsvpSuccessBody">Can't wait to see your game face.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="sd-footer">
+  <p>Jainee &amp; Nrupen · Sports Day · Jan 31, 2026</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
