@@ -8,105 +8,102 @@
 <meta name="description" content="Join us for a morning of team sports and games before the wedding festivities begin." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
 <!-- ══════════ HERO ══════════ -->
-<header class="hero">
-  <div class="bunting" aria-hidden="true">
-    <svg viewBox="0 0 320 24" preserveAspectRatio="none" class="bunting-svg">
-      <polygon points="0,0 16,0 8,22" />
-      <polygon points="20,0 36,0 28,22" />
-      <polygon points="40,0 56,0 48,22" />
-      <polygon points="60,0 76,0 68,22" />
-      <polygon points="80,0 96,0 88,22" />
-      <polygon points="100,0 116,0 108,22" />
-      <polygon points="120,0 136,0 128,22" />
-      <polygon points="140,0 156,0 148,22" />
-      <polygon points="160,0 176,0 168,22" />
-      <polygon points="180,0 196,0 188,22" />
-      <polygon points="200,0 216,0 208,22" />
-      <polygon points="220,0 236,0 228,22" />
-      <polygon points="240,0 256,0 248,22" />
-      <polygon points="260,0 276,0 268,22" />
-      <polygon points="280,0 296,0 288,22" />
-      <polygon points="300,0 316,0 308,22" />
-    </svg>
-  </div>
-
-  <div class="sun" aria-hidden="true"></div>
-
-  <div class="hero-content">
+<section class="hero-section" id="hero" aria-label="Sports Day">
+  <div class="hero-content reveal-item">
+    <img class="hero-logo" src="../assets/images/logo.png" alt="Jainee and Nrupen logo" />
     <p class="hero-eyebrow">Before the celebrations begin</p>
-    <h1 class="hero-title">Sports Day</h1>
-    <p class="hero-tagline">Team sports, classic games, and a little bit of childhood — all in one morning. Kids very welcome.</p>
-
-    <div class="hero-facts">
-      <div class="fact">
-        <span class="fact-label">Date</span>
-        <span class="fact-value">Sat, Jan 31, 2026</span>
-      </div>
-      <div class="fact">
-        <span class="fact-label">Time</span>
-        <span class="fact-value">10:00 AM</span>
-      </div>
-      <div class="fact">
-        <span class="fact-label">Venue</span>
-        <a class="fact-value fact-link" href="https://www.google.com/maps/search/?api=1&query=K.K+Farm%2C+Ahmedabad" target="_blank" rel="noreferrer">K.K Farm, Ahmedabad</a>
-      </div>
-    </div>
+    <h1 class="hero-names sd-title">Sports Day</h1>
+    <div class="hero-divider" aria-hidden="true"><span></span><svg viewBox="0 0 24 24" class="hero-divider-mark"><path d="M12 2l2.5 7.5H22l-6 4.5 2.5 7.5L12 17l-6.5 4.5L8 14 2 9.5h7.5z"/></svg><span></span></div>
+    <p class="hero-date">Saturday, January 31st, 2026 · 10:00 AM</p>
+    <p class="hero-venue"><a href="https://www.google.com/maps/search/?api=1&query=K.K+Farm%2C+Ahmedabad" target="_blank" rel="noreferrer">K.K Farm, Ahmedabad</a></p>
+    <p class="sd-hero-blurb">Team sports, classic games, and a little bit of childhood — all in one morning. Kids very welcome.</p>
   </div>
-</header>
+
+  <a class="hero-scroll" href="#activities" aria-label="Scroll to activities">
+    <span class="hero-scroll-label">Scroll</span>
+    <span class="hero-scroll-chevron" aria-hidden="true"></span>
+  </a>
+</section>
 
 <!-- ══════════ ACTIVITIES ══════════ -->
-<section class="activities">
-  <div class="activity-card">
-    <span class="activity-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="8" />
-        <path d="M12 4v16M4 12h16M6.5 6.5l11 11M17.5 6.5l-11 11" />
-      </svg>
-    </span>
-    <h2>Team Sports</h2>
-    <p>Cricket, tug-of-war, relay races — pick a team and bring your competitive spirit.</p>
+<section class="section activities-section" id="activities" aria-labelledby="activitiesTitle">
+  <div class="events-header reveal-item">
+    <p class="events-eyebrow">What to expect</p>
+    <h2 class="events-title" id="activitiesTitle">A Morning to Play</h2>
   </div>
-  <div class="activity-card">
-    <span class="activity-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 3l2.4 5.2 5.6.6-4.2 3.8 1.2 5.6L12 15.8 6.9 18.2l1.2-5.6L4 8.8l5.6-.6z" />
-      </svg>
-    </span>
-    <h2>Classic Games</h2>
-    <p>Musical chairs, three-legged race, sack race — all the games you grew up with.</p>
+
+  <div class="activities-grid">
+    <div class="activity-card reveal-item">
+      <span class="icon-badge" aria-hidden="true">
+        <svg class="icon-badge-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="8" />
+          <path d="M12 4v16M4 12h16M6.5 6.5l11 11M17.5 6.5l-11 11" />
+        </svg>
+      </span>
+      <h3 class="activity-name">Team Sports</h3>
+      <p class="activity-desc">Cricket, tug-of-war, relay races — pick a team and bring your competitive spirit.</p>
+    </div>
+
+    <div class="activity-card reveal-item" style="transition-delay:90ms">
+      <span class="icon-badge" aria-hidden="true">
+        <svg class="icon-badge-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l2.4 5.2 5.6.6-4.2 3.8 1.2 5.6L12 15.8 6.9 18.2l1.2-5.6L4 8.8l5.6-.6z" />
+        </svg>
+      </span>
+      <h3 class="activity-name">Classic Games</h3>
+      <p class="activity-desc">Musical chairs, three-legged race, sack race — all the games you grew up with.</p>
+    </div>
+
+    <div class="activity-card reveal-item" style="transition-delay:180ms">
+      <span class="icon-badge" aria-hidden="true">
+        <svg class="icon-badge-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="10" rx="6" ry="7" />
+          <path d="M12 17v4M9.5 21h5" />
+        </svg>
+      </span>
+      <h3 class="activity-name">Kids Corner</h3>
+      <p class="activity-desc">Face painting, bouncy fun, and games just for the little ones.</p>
+    </div>
   </div>
-  <div class="activity-card">
-    <span class="activity-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <ellipse cx="12" cy="10" rx="6" ry="7" />
-        <path d="M12 17v4M9.5 21h5" />
-      </svg>
-    </span>
-    <h2>Kids Corner</h2>
-    <p>Face painting, bouncy fun, and games just for the little ones.</p>
+</section>
+
+<!-- ══════════ COUNTDOWN ══════════ -->
+<section class="section countdown-section" id="countdown" aria-labelledby="countdownTitle">
+  <div class="countdown-garland reveal-item" aria-hidden="true">
+    <svg viewBox="0 0 200 24" class="countdown-garland-svg"><path d="M0 12h70M130 12h70"/><circle cx="100" cy="12" r="5"/><circle cx="80" cy="12" r="2.5"/><circle cx="120" cy="12" r="2.5"/></svg>
+  </div>
+  <div class="countdown-header reveal-item">
+    <h2 class="countdown-title" id="countdownTitle">
+      <span class="cd-title-lead">Counting Down to</span>
+      <span class="cd-title-forever">Game Day</span>
+    </h2>
+  </div>
+  <div class="countdown-cells" id="countdownCells" role="timer" aria-label="Time remaining until sports day">
+    <div class="cd-cell"><span class="cd-num" id="cdDays">00</span><span class="cd-label">Days</span></div>
+    <div class="cd-cell"><span class="cd-num" id="cdHours">00</span><span class="cd-label">Hours</span></div>
+    <div class="cd-cell"><span class="cd-num" id="cdMins">00</span><span class="cd-label">Minutes</span></div>
+    <div class="cd-cell"><span class="cd-num" id="cdSecs">00</span><span class="cd-label">Seconds</span></div>
   </div>
 </section>
 
 <!-- ══════════ RSVP ══════════ -->
-<section class="rsvp-section" id="rsvp">
-  <div class="rsvp-content">
+<section class="section rsvp-section" id="rsvp" aria-labelledby="rsvpHeadline">
+  <canvas class="rsvp-fireworks" id="rsvpFireworks" aria-hidden="true"></canvas>
+  <div class="rsvp-content reveal-item">
+
     <div id="rsvpFormWrap">
       <p class="rsvp-eyebrow">Save your spot</p>
-      <h2 class="rsvp-headline">Will you play?</h2>
-      <p class="rsvp-body">Let us know you're in — and your t-shirt size, so we can get yours made.</p>
+      <h2 class="rsvp-headline" id="rsvpHeadline">Will you play?</h2>
+      <p class="rsvp-body">Add everyone joining you and their t-shirt size, so we can get yours made.</p>
 
       <form id="rsvpForm">
-        <div class="field">
-          <label for="rsvpName">Your name</label>
-          <input type="text" id="rsvpName" placeholder="Full name" required>
-        </div>
-
         <div class="field">
           <label>Will you be joining?</label>
           <div class="attend-toggle">
@@ -121,15 +118,9 @@
           </div>
         </div>
 
-        <div class="field guest-count-row visible" id="rsvpGuestRow">
-          <label for="rsvpGuests">Number attending (including you)</label>
-          <input type="number" id="rsvpGuests" min="1" max="10" value="1">
-        </div>
+        <div id="rsvpGuestList" class="guest-list"></div>
 
-        <div class="field guest-count-row visible" id="rsvpSizesRow">
-          <label>T-shirt sizes</label>
-          <div id="rsvpSizes" class="sizes-grid"></div>
-        </div>
+        <button type="button" class="add-guest-btn" id="addGuestBtn">+ Add another guest</button>
 
         <button type="submit" class="rsvp-submit" id="rsvpSubmitBtn">Send RSVP</button>
         <p class="rsvp-helper">This is a small, separate guest list — your response goes straight to Jainee &amp; Nrupen.</p>
@@ -143,11 +134,13 @@
       <h2 class="success-title">You're in, <span id="rsvpSuccessName">Friend</span>!</h2>
       <p class="rsvp-helper" id="rsvpSuccessBody">Can't wait to see your game face.</p>
     </div>
+
   </div>
 </section>
 
-<footer class="sd-footer">
-  <p>Jainee &amp; Nrupen · Sports Day · Jan 31, 2026</p>
+<footer class="site-footer">
+  <img class="ft-logo" src="../assets/images/logo.png" alt="Jainee and Nrupen logo" />
+  <p class="ft-tagline">Sports Day · Jan 31, 2026 · K.K Farm, Ahmedabad</p>
 </footer>
 
 <script src="script.js"></script>

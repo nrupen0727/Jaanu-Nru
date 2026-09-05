@@ -1,335 +1,124 @@
 /* ═══════════════════════════════════
-   Tokens
+   Page-specific additions — tokens, fonts and shared components
+   (hero, event cards, RSVP form) come from ../css/styles.css
 ═══════════════════════════════════ */
-:root {
-  --grass: #2f7a4d;
-  --grass-dark: #1c4a30;
-  --sun: #f2a63e;
-  --sun-light: #ffd98a;
-  --cream: #fdf8ee;
-  --ink: #1f2a22;
-  --white: #ffffff;
-  --font-heading: 'Baloo 2', cursive;
-  --font-body: 'Nunito', sans-serif;
-}
 
-* { box-sizing: border-box; }
+.sd-title { font-size: clamp(2.75rem, 9vw, 4.5rem); }
 
-body {
-  margin: 0;
-  font-family: var(--font-body);
-  background: var(--cream);
-  color: var(--ink);
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ═══════════════════════════════════
-   Hero
-═══════════════════════════════════ */
-.hero {
-  position: relative;
-  background: linear-gradient(180deg, var(--grass) 0%, var(--grass-dark) 100%);
-  color: var(--white);
-  text-align: center;
-  padding: 3rem 1.5rem clamp(3rem, 8vw, 5rem);
-  overflow: hidden;
-}
-
-.bunting { position: absolute; top: 0; left: 0; width: 100%; }
-.bunting-svg { width: 100%; height: 24px; display: block; }
-.bunting-svg polygon:nth-child(odd) { fill: var(--sun); }
-.bunting-svg polygon:nth-child(even) { fill: var(--white); opacity: 0.9; }
-
-.sun {
-  position: absolute;
-  top: -60px;
-  right: -60px;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, var(--sun-light), var(--sun) 70%);
-  opacity: 0.9;
-}
-
-.hero-content { position: relative; max-width: 560px; margin: 2rem auto 0; }
-
-.hero-eyebrow {
-  font-family: var(--font-heading);
-  font-size: 0.8rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--sun-light);
-  margin: 0 0 0.5rem;
-}
-
-.hero-title {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: clamp(3rem, 12vw, 5rem);
-  margin: 0 0 1rem;
-  text-wrap: balance;
-  text-shadow: 0 3px 0 rgba(0,0,0,0.12);
-}
-
-.hero-tagline {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  opacity: 0.92;
-  margin: 0 0 2.5rem;
-}
-
-.hero-facts {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.fact { display: flex; flex-direction: column; gap: 0.3rem; }
-
-.fact-label {
-  font-family: var(--font-heading);
-  font-size: 0.68rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--sun-light);
-}
-
-.fact-value {
-  font-family: var(--font-heading);
-  font-weight: 600;
+.sd-hero-blurb {
+  max-width: 480px;
+  margin: 1.5rem auto 0;
   font-size: 1.05rem;
-  color: var(--white);
+  line-height: 1.6;
+  color: var(--ivory);
+  opacity: 0.85;
 }
 
-.fact-link { text-decoration: underline; text-underline-offset: 3px; }
-.fact-link:hover { color: var(--sun-light); }
+.hero-venue a { color: inherit; text-decoration: underline; text-underline-offset: 3px; transition: color 0.25s ease; }
+.hero-venue a:hover { color: var(--gold-light); }
 
-/* ═══════════════════════════════════
-   Activities
-═══════════════════════════════════ */
-.activities {
+/* ── Activities ── */
+.activities-section { text-align: center; }
+
+.activities-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: clamp(3rem, 6vw, 4.5rem) 1.5rem;
 }
 
 .activity-card {
-  background: var(--white);
-  border: 2px solid rgba(47, 122, 77, 0.12);
-  border-radius: 16px;
-  padding: 1.75rem 1.5rem;
+  border: 1px solid var(--gold-light);
+  background: var(--ivory);
+  border-radius: 4px;
+  padding: 2rem 1.5rem;
   text-align: center;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
-.activity-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: var(--cream);
-  color: var(--grass);
-  margin-bottom: 1rem;
+.activity-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold);
+  box-shadow: 0 16px 34px rgba(107, 30, 46, 0.16);
 }
-.activity-icon svg { width: 26px; height: 26px; }
 
-.activity-card h2 {
+.activity-card:hover .icon-badge {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(184, 134, 63, 0.35);
+}
+
+.activity-name {
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.3rem;
-  margin: 0 0 0.5rem;
-  color: var(--grass-dark);
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--maroon);
+  margin: 0 0 0.6rem;
 }
 
-.activity-card p {
+.activity-desc {
   font-size: 0.95rem;
   line-height: 1.55;
   opacity: 0.8;
   margin: 0;
 }
 
-/* ═══════════════════════════════════
-   RSVP
-═══════════════════════════════════ */
-.rsvp-section {
-  background: linear-gradient(180deg, var(--grass-dark) 0%, var(--grass) 100%);
-  color: var(--white);
-  text-align: center;
-  padding: clamp(3rem, 8vw, 5rem) 1.5rem;
-}
-
-.rsvp-content { max-width: 480px; margin: 0 auto; }
-
-.rsvp-eyebrow {
-  font-family: var(--font-heading);
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--sun-light);
-  margin: 0 0 0.6rem;
-}
-
-.rsvp-headline {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: clamp(1.9rem, 5vw, 2.4rem);
-  margin: 0 0 0.9rem;
-}
-
-.rsvp-body { font-size: 1.05rem; opacity: 0.9; margin: 0 0 2rem; line-height: 1.5; }
-
-#rsvpForm {
+/* ── Guest list ── */
+.guest-list {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  text-align: left;
+  gap: 1rem;
 }
 
-.field > label {
-  display: block;
+.guest-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.6rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgba(255, 250, 245, 0.15);
+}
+
+.guest-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+.guest-row-fields {
+  display: flex;
+  gap: 0.6rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.guest-name-field { flex: 1.4; min-width: 0; }
+.guest-size-field { flex: 1; min-width: 0; }
+
+.guest-remove {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 250, 245, 0.3);
+  background: transparent;
+  color: var(--ivory);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+.guest-remove:hover { border-color: var(--gold-light); color: var(--gold-light); }
+
+.add-guest-btn {
+  align-self: flex-start;
   font-family: var(--font-heading);
-  font-weight: 600;
   font-size: 0.78rem;
-  letter-spacing: 0.05em;
-  color: var(--sun-light);
-  margin-bottom: 0.5rem;
-}
-
-.field input[type="text"],
-.field input[type="number"],
-.field select {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  color: var(--white);
-  font-family: var(--font-body);
-  font-size: 1rem;
-  padding: 0.65rem 0.8rem;
-  border-radius: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  background: transparent;
+  border: 1px dashed rgba(217, 184, 118, 0.6);
+  border-radius: 2px;
+  padding: 0.6rem 1.1rem;
+  cursor: pointer;
   transition: border-color 0.25s ease, background 0.25s ease;
 }
-.field input::placeholder { color: rgba(255, 255, 255, 0.5); }
-.field input:focus, .field select:focus {
-  outline: none;
-  border-color: var(--sun);
-  background: rgba(255, 255, 255, 0.16);
-}
-.field select option { color: var(--ink); }
+.add-guest-btn:hover { border-color: var(--gold-light); background: rgba(217, 184, 118, 0.08); }
 
-.attend-toggle { display: flex; gap: 0.6rem; }
-.attend-toggle input { position: absolute; opacity: 0; pointer-events: none; }
-.attend-toggle label { flex: 1; position: relative; }
-.attend-toggle .opt {
-  display: block;
-  text-align: center;
-  padding: 0.65rem 0.5rem;
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  border-radius: 10px;
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-.attend-toggle input:checked + .opt {
-  background: var(--sun);
-  color: var(--grass-dark);
-  border-color: var(--sun);
-}
-.attend-toggle input:focus-visible + .opt { outline: 2px solid var(--sun); outline-offset: 2px; }
-
-.guest-count-row { display: none; }
-.guest-count-row.visible { display: block; }
-
-.sizes-grid { display: flex; flex-direction: column; gap: 0.7rem; }
-.sizes-grid .size-field label {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 0.82rem;
-  color: var(--white);
-  opacity: 0.85;
-  display: block;
-  margin-bottom: 0.35rem;
-}
-
-.rsvp-submit {
-  margin-top: 0.4rem;
-  display: block;
-  width: 100%;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  font-size: 1rem;
-  color: var(--grass-dark);
-  background: var(--sun);
-  padding: 1rem 2.5rem;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.15s ease;
-}
-.rsvp-submit:hover { background: var(--sun-light); }
-.rsvp-submit:active { transform: scale(0.98); }
-.rsvp-submit:disabled { opacity: 0.6; cursor: default; transform: none; }
-
-.rsvp-helper { font-size: 0.82rem; opacity: 0.7; margin: 1rem 0 0; }
-
-/* success state */
-#rsvpSuccess { display: none; }
-#rsvpSuccess.visible {
-  display: block;
-  animation: sd-rise 0.5s ease both;
-}
-@keyframes sd-rise {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@media (prefers-reduced-motion: reduce) {
-  #rsvpSuccess.visible { animation: none; }
-}
-
-.success-mark {
-  width: 50px;
-  height: 50px;
-  margin: 0 auto 1.25rem;
-  border: 2px solid var(--sun);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.success-mark svg { width: 22px; height: 22px; }
-.success-mark path {
-  stroke: var(--sun);
-  stroke-width: 2.4;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 24;
-  stroke-dashoffset: 24;
-  animation: sd-draw 0.4s ease 0.35s forwards;
-}
-@keyframes sd-draw { to { stroke-dashoffset: 0; } }
-
-.success-title {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.5rem;
-  margin: 0 0 0.6rem;
-}
-
-/* ═══════════════════════════════════
-   Footer
-═══════════════════════════════════ */
-.sd-footer {
-  text-align: center;
-  padding: 1.5rem;
-  font-size: 0.82rem;
-  color: var(--grass-dark);
-  opacity: 0.65;
+@media (max-width: 480px) {
+  .guest-row-fields { flex-direction: column; }
 }

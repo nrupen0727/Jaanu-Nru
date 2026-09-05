@@ -802,7 +802,8 @@ body:not(.intro-active) .intro {
 }
 
 .field input[type="text"],
-.field input[type="number"] {
+.field input[type="number"],
+.field select {
   width: 100%;
   background: rgba(255, 250, 245, 0.06);
   border: 1px solid rgba(255, 250, 245, 0.3);
@@ -814,11 +815,12 @@ body:not(.intro-active) .intro {
   transition: border-color 0.25s ease, background 0.25s ease;
 }
 .field input::placeholder { color: rgba(255, 250, 245, 0.35); }
-.field input:focus {
+.field input:focus, .field select:focus {
   outline: none;
   border-color: var(--gold-light);
   background: rgba(255, 250, 245, 0.1);
 }
+.field select option { color: var(--ink); }
 
 .attend-toggle {
   display: flex;
