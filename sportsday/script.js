@@ -5,7 +5,7 @@
 // ═══════════════════════════════════
 const SPORTS_DAY_CONFIG = {
   sheetEndpoint: 'https://script.google.com/macros/s/AKfycbxjrysLOBNZeQrVaRZr76PkRlxhKT8TJNlvnySAhO5ijafLjPkPL-J8SF4hupm6gZm-gQ/exec',
-  eventDate: '2026-01-31T10:00:00',
+  eventDate: '2027-01-31T10:00:00',
 };
 
 const SIZE_OPTIONS = [
