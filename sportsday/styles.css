@@ -3,7 +3,24 @@
    (hero, event cards, RSVP form) come from ../css/styles.css
 ═══════════════════════════════════ */
 
+:root {
+  /* True maroon for this page only (main site's --maroon token is
+     actually navy) — matches the sports-day-passport-maroon branch. */
+  --maroon: #6b1e2e;
+  --maroon-dark: #3d0f1a;
+}
+
 .sd-title { font-size: clamp(2.75rem, 9vw, 4.5rem); }
+
+/* Continuous maroon backdrop — countdown section normally sits on
+   the light --cream background; recolor it to match hero/RSVP. */
+.countdown-section {
+  background: linear-gradient(160deg, var(--maroon) 0%, var(--maroon-dark) 100%);
+  color: var(--ivory);
+}
+.countdown-section .cd-title-forever { color: var(--gold-light); }
+.countdown-section .cd-num { color: var(--gold-light); }
+.countdown-section .cd-label { color: var(--ivory); opacity: 0.7; }
 
 .sd-hero-blurb {
   max-width: 480px;
